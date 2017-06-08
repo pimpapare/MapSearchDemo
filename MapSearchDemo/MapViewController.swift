@@ -10,26 +10,60 @@ import UIKit
 
 class MapViewController: UIViewController {
 
+    @IBOutlet weak var txSlider: UILabel!
+    @IBOutlet weak var slider: UISlider!
+
+    @IBOutlet weak var vFooter: UIView!
+    @IBOutlet weak var vSlider: UIView!
+    @IBOutlet weak var vLeftSlider: UIView!
+    @IBOutlet weak var vTitleSlider: UIView!
+
+    @IBOutlet weak var btnSearch: UIButtonExtension!
+    @IBOutlet weak var bottomViewSlider: NSLayoutConstraint!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setInitailUI()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setInitailUI(){
+    
+        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        vFooter.addGestureRecognizer(gestureRecognizer)
+        
+        btnSearch.titleLabel?.text = .txBtnSearch
+        txSlider.text = .txTitleSlider
+        
+        vTitleSlider.backgroundColor = UIColor.colorStrikemaster
+        vTitleSlider.backgroundColor = UIColor.colorCharcoal
+        
+        btnSearch.backgroundColor = UIColor.colorWhiteSmoke
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func btnSearchPressed(_ sender: Any) {
+  
     }
-    */
-
+    
+    func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
+        
+        if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
+            
+            let velocity : CGPoint =  gestureRecognizer.velocity(in:vSlider)
+            if velocity.y < 0 {
+                animation(constant: 0)
+            }else{
+                animation(constant: -75)
+            }
+        }
+    }
+    
+    func animation(constant:CGFloat){
+        
+        UIView.animate(withDuration: 1, delay: 1, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
+            self.bottomViewSlider.constant = constant
+            self.view.layoutIfNeeded()
+        }) { _ in
+        }
+    }
+    
 }

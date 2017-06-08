@@ -36,13 +36,13 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nLY-mI-9Ik">
                                 <rect key="frame" x="0.0" y="140" width="375" height="527"/>
                                 <connections>
-                                    <segue destination="tR1-oE-1sO" kind="embed" id="iuh-xZ-mEM"/>
+                                    <segue destination="tR1-oE-1sO" kind="embed" identifier="" id="iuh-xZ-mEM"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="saY-FE-Yzy">
                                 <rect key="frame" x="0.0" y="140" width="375" height="527"/>
                                 <connections>
-                                    <segue destination="Hh7-Y2-UZZ" kind="embed" id="BGE-Ya-NX2"/>
+                                    <segue destination="Hh7-Y2-UZZ" kind="embed" identifier="" id="BGE-Ya-NX2"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -62,10 +62,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Lfx-2D-2th"/>
+                    <connections>
+                        <outlet property="containerMap" destination="nLY-mI-9Ik" id="SDE-kQ-AiU"/>
+                        <outlet property="containerSearch" destination="saY-FE-Yzy" id="gwi-5n-6Q9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvn-KE-CDU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="638" y="-83"/>
+            <point key="canvasLocation" x="637.60000000000002" y="-83.208395802098963"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yYg-ql-cpo">
@@ -89,16 +93,33 @@
         <scene sceneID="IlD-mn-F2s">
             <objects>
                 <viewController storyboardIdentifier="MapViewController" id="tR1-oE-1sO" customClass="MapViewController" customModule="MapSearchDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Hv-Lk-Zsg"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ale-Lq-4FG"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="u4p-0m-VsY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cuo-kj-oME">
-                                <rect key="frame" x="162" y="239" width="50" height="50"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="162" y="218.5" width="50" height="50"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_person_pin_circle" translatesAutoresizingMaskIntoConstraints="NO" id="6IG-gr-ypX" customClass="UIImageViewExtension" customModule="MapSearchDemo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="imageColor">
+                                                <color key="value" red="0.94901960780000005" green="0.25882352939999997" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="6IG-gr-ypX" secondAttribute="bottom" id="0zS-W6-9gn"/>
+                                    <constraint firstItem="6IG-gr-ypX" firstAttribute="top" secondItem="Cuo-kj-oME" secondAttribute="top" id="6ND-hv-cyH"/>
+                                    <constraint firstAttribute="trailing" secondItem="6IG-gr-ypX" secondAttribute="trailing" id="FAV-0h-DgV"/>
                                     <constraint firstAttribute="width" constant="50" id="TdC-iC-72t"/>
                                     <constraint firstAttribute="height" constant="50" id="fnA-dF-8av"/>
+                                    <constraint firstItem="6IG-gr-ypX" firstAttribute="leading" secondItem="Cuo-kj-oME" secondAttribute="leading" id="zKc-kk-bMG"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pAs-aW-FRL">
@@ -114,7 +135,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.01176470588" green="0.36470588240000001" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.25490196079999999" green="0.2274509804" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="qWH-cW-nLu" firstAttribute="leading" secondItem="s4U-dG-6ol" secondAttribute="leading" constant="50" id="Jr3-0u-IuD"/>
                                             <constraint firstAttribute="height" constant="22" id="LgS-pc-cLN"/>
@@ -130,7 +151,7 @@
                                             <constraint firstAttribute="width" constant="100" id="fhw-pO-nLW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Prompt-Medium" family="Prompt" pointSize="16"/>
-                                        <state key="normal" title="Confirm">
+                                        <state key="normal" title="Search">
                                             <color key="titleColor" red="0.4431372549" green="0.4431372549" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -141,13 +162,16 @@
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnSearchPressed:" destination="tR1-oE-1sO" eventType="touchUpInside" id="TGw-Tz-O5m"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ekj-Le-czt">
                                         <rect key="frame" x="0.0" y="40" width="375" height="50"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3M8-s2-wkh">
                                                 <rect key="frame" x="0.0" y="0.0" width="10" height="50"/>
-                                                <color key="backgroundColor" red="0.0" green="0.61568627450000002" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.25490196079999999" green="0.2274509804" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="10" id="GTo-K1-RQM"/>
                                                 </constraints>
@@ -187,19 +211,33 @@
                             <constraint firstAttribute="bottom" secondItem="pAs-aW-FRL" secondAttribute="bottom" id="4nx-ui-xUe"/>
                             <constraint firstItem="pAs-aW-FRL" firstAttribute="leading" secondItem="u4p-0m-VsY" secondAttribute="leading" id="CWJ-lB-fk9"/>
                             <constraint firstAttribute="trailing" secondItem="pAs-aW-FRL" secondAttribute="trailing" id="hAI-Rd-9Vw"/>
-                            <constraint firstItem="Cuo-kj-oME" firstAttribute="centerY" secondItem="u4p-0m-VsY" secondAttribute="centerY" id="kGl-hn-Vna"/>
+                            <constraint firstItem="Cuo-kj-oME" firstAttribute="centerY" secondItem="u4p-0m-VsY" secondAttribute="centerY" constant="-20" id="kGl-hn-Vna"/>
                             <constraint firstItem="Cuo-kj-oME" firstAttribute="centerX" secondItem="u4p-0m-VsY" secondAttribute="centerX" id="wDH-5C-B5X"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bottomViewSlider" destination="4nx-ui-xUe" id="08e-Sl-OIi"/>
+                        <outlet property="btnSearch" destination="HkF-KE-FcW" id="WCc-XJ-qbx"/>
+                        <outlet property="slider" destination="NUf-17-8hX" id="Hte-Ig-hd9"/>
+                        <outlet property="txSlider" destination="qWH-cW-nLu" id="WWQ-IM-tOe"/>
+                        <outlet property="vFooter" destination="pAs-aW-FRL" id="Rj6-ix-HiU"/>
+                        <outlet property="vLeftSlider" destination="3M8-s2-wkh" id="pd7-ue-ogh"/>
+                        <outlet property="vSlider" destination="ekj-Le-czt" id="yLp-0x-Xrj"/>
+                        <outlet property="vTitleSlider" destination="s4U-dG-6ol" id="g8s-2F-k7d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2g6-14-yx9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1421.5999999999999" y="-341.37931034482762"/>
+            <point key="canvasLocation" x="1422" y="-380"/>
         </scene>
         <!--Search List View Controller-->
         <scene sceneID="lJq-10-qf6">
             <objects>
                 <viewController storyboardIdentifier="SearchListViewController" id="Hh7-Y2-UZZ" customClass="SearchListViewController" customModule="MapSearchDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hw3-jB-UXZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="ao3-8e-WQ6"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VGd-yV-ekf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="527"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -223,4 +261,7 @@
             <point key="canvasLocation" x="1422" y="187"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_person_pin_circle" width="24" height="24"/>
+    </resources>
 </document>

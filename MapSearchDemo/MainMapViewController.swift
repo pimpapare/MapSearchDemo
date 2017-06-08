@@ -10,26 +10,37 @@ import UIKit
 
 class MainMapViewController: UIViewController {
 
+    @IBOutlet weak var containerMap: UIView!
+    @IBOutlet weak var containerSearch: UIView!
+    
+    var headerView:HeaderView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setInitialUI()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setInitialUI(){
+        
+        headerView = (Bundle.main.loadNibNamed("HeaderView", owner: nil, options: nil)?[0] as? HeaderView)!
+        headerView?.btnMenuMap.addTarget(self, action: #selector(openMap), for: .touchUpInside)
+        headerView?.btnMenuSearch.addTarget(self, action: #selector(openSearch), for: .touchUpInside)
+        self.view.addSubview(headerView!)
+        
+        setUIMenu(viewMap: 1, viewSearch: 0)        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func openMap(_ sender: Any) {
+        setUIMenu(viewMap: 1, viewSearch: 0)
     }
-    */
-
+    
+    func openSearch(_ sender: Any) {
+        setUIMenu(viewMap: 0, viewSearch: 1)
+    }
+    
+    func setUIMenu(viewMap:CGFloat,viewSearch:CGFloat){
+        
+        self.containerMap.alpha = viewMap
+        self.containerSearch.alpha = viewSearch
+    }
 }

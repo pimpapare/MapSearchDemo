@@ -12,14 +12,11 @@ class LaunchScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.perform(#selector(goToMapStoryBoard), with: nil, afterDelay: 0.2)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func goToMapStoryBoard(){
+        self.performSegue(withIdentifier: "goToMapStoryBoard", sender: nil)
     }
-
-
 }
 

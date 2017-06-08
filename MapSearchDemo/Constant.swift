@@ -19,4 +19,11 @@ public extension String {
     
     public static let cell = "Cell"
 
+    //Main Map
+    public static let txTitleHeader = "iOS Developer"
+    public static let txBtnSearch = "Search"
+    public static let txTitleSlider = "Slide for radius"
+
+    public static let txBtnMap = "Map"
+
 }

@@ -12,24 +12,24 @@ class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    /// Usage: gotoStoryClass("ViewClassName")
+    func gotoStoryClass(classname:String) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier:classname)
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    /// Usage: gotoNibClass(className: "LoginView")
+    func gotoNibClass(className:String) {
+        self.navigationController?.pushViewController(Bundle.loadNib(name:className)!, animated: true)
     }
-    */
 
+    /// Usage: self.showAlertPopup(title: " ", message: " ", yes_text: " ")
+    func showAlertPopup(title: String, message: String, yes_text: String) {
+        
+        let alertController: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: yes_text, style: .default, handler:nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
