@@ -82,7 +82,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="9a6-Rb-ITc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dH2-db-7l3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dH2-db-7l3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -108,15 +108,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Y7-Vb-ku6" customClass="UIViewExtension" customModule="MapSearchDemo" customModuleProvider="target">
-                                <rect key="frame" x="112" y="188.5" width="150" height="150"/>
+                                <rect key="frame" x="47" y="123.5" width="280" height="280"/>
                                 <color key="backgroundColor" red="0.35294117650000001" green="0.53725490200000003" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="fV6-cn-D5e"/>
-                                    <constraint firstAttribute="width" constant="150" id="jbR-bc-yPM"/>
+                                    <constraint firstAttribute="height" constant="280" id="fV6-cn-D5e"/>
+                                    <constraint firstAttribute="width" constant="280" id="jbR-bc-yPM"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="75"/>
+                                        <real key="value" value="140"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
                                         <color key="value" red="0.35294117650000001" green="0.53725490200000003" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -202,14 +202,14 @@
                                                     <constraint firstAttribute="width" constant="10" id="GTo-K1-RQM"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50 KM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="368-5R-HVp">
-                                                <rect key="frame" x="328" y="18.5" width="37" height="14.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 KM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="368-5R-HVp">
+                                                <rect key="frame" x="337.5" y="18.5" width="27.5" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NUf-17-8hX">
-                                                <rect key="frame" x="28" y="10" width="292" height="31"/>
+                                                <rect key="frame" x="28" y="10" width="301.5" height="31"/>
                                                 <connections>
                                                     <action selector="sliderHandlerChangeState:" destination="tR1-oE-1sO" eventType="valueChanged" id="dxW-Ox-pup"/>
                                                     <action selector="sliderHandlerDoneWithSender:" destination="tR1-oE-1sO" eventType="touchUpInside" id="jNd-Me-dRG"/>
@@ -244,9 +244,6 @@
                                     <constraint firstItem="ekj-Le-czt" firstAttribute="top" secondItem="pAs-aW-FRL" secondAttribute="top" constant="60" id="xXe-d4-ruZ"/>
                                     <constraint firstAttribute="height" constant="110" id="zRH-PK-Q9Q"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="8Sf-Vt-LTi" appends="YES" id="xB1-rq-OCv"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -277,11 +274,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2g6-14-yx9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="8Sf-Vt-LTi">
-                    <connections>
-                        <action selector="vSliderTapped:" destination="tR1-oE-1sO" id="ObM-7q-t8w"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1421.5999999999999" y="-380.05997001499253"/>
         </scene>

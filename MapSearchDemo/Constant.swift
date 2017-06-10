@@ -27,7 +27,7 @@ public extension String {
     //Main Map
     public static let txTitleHeader = "iOS Developer"
     public static let txBtnSearch = "Search"
-    public static let txTitleSlider = "Choose your location"
+    public static let txTitleSlider = "Choose your location and set distance"
 
     public static let txBtnMap = "Map"
 

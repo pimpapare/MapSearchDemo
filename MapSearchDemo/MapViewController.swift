@@ -27,7 +27,7 @@ class MapViewController: BaseViewController {
     @IBOutlet weak var heightVCircle: NSLayoutConstraint!
     @IBOutlet weak var widthVCircle: NSLayoutConstraint!
     
-    var zoomMap:Float = 10
+    var zoomMap:Float = 14
     var mapView:GMSMapView!
     lazy var mapViewModel:MapViewModel! = MapViewModel(delegate: self)
     
@@ -44,11 +44,8 @@ class MapViewController: BaseViewController {
     
     func setInitailUI(){
         
-        addGooleMapView(zoom: zoomMap)
-        
-        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-        vFooter.addGestureRecognizer(gestureRecognizer)
-        
+        addGoogleMapView(zoom: zoomMap)
+                
         btnSearch.titleLabel?.text = .txBtnSearch
         txSlider.text = .txTitleSlider
         
@@ -56,10 +53,9 @@ class MapViewController: BaseViewController {
         vTitleSlider.backgroundColor = UIColor.colorCharcoal
         
         btnSearch.backgroundColor = UIColor.colorRed
-        
     }
     
-    func addGooleMapView(zoom:Float){
+    func addGoogleMapView(zoom:Float){
         
         let userLocation = UserDefaults.standard.object(forKey:.userLocation) as? [String:Double]
         
@@ -91,23 +87,6 @@ class MapViewController: BaseViewController {
         mapViewModel.callService(location: "\((chooselat == -180.0) ? 18.0:chooselat),\((chooselng == -180.0) ? 98.0:chooselng)", radius: mapViewModel.getRadiusFromSliderValue(sliderValue: slider.value), key: .GOOGLE_API)
     }
     
-    @IBAction func vSliderTapped(_ sender: Any) {
-        animationFooter(constant: mapViewModel.sizeForBottomOfViewSliderFromTapGesture(constant: self.bottomViewSlider.constant))
-    }
-    
-    func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
-        
-        if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
-            
-            let velocity : CGPoint =  gestureRecognizer.velocity(in:vSlider)
-            let isVerticalGesture:Bool = velocity.y > velocity.x
-            
-            if (isVerticalGesture) {
-                animationFooter(constant: mapViewModel.sizeForBottomOfViewSliderFromPanGesture(velocityY: velocity.y))
-            }
-        }
-    }
-    
     func animationFooter(constant:CGFloat){
         
         UIView.animate(withDuration: 1, delay: 1, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
@@ -118,7 +97,7 @@ class MapViewController: BaseViewController {
     
     func animationCircle(alpha:CGFloat){
         
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             self.vCircle.alpha = alpha
         })
     }
@@ -133,8 +112,9 @@ class MapViewController: BaseViewController {
         
         animationCircle(alpha: 0.3)
         mapView?.clear()
+        mapView.removeFromSuperview()
         zoomMap = mapViewModel.zoomCamera(sliderValue: slider.value)
-        addGooleMapView(zoom: zoomMap)
+        addGoogleMapView(zoom: zoomMap)
     }
     
     override func onDataDidLoad() {
@@ -144,7 +124,7 @@ class MapViewController: BaseViewController {
         slider.isUserInteractionEnabled = true
 
         mapView?.clear()
-        addGooleMapView(zoom: zoomMap)
+        addGoogleMapView(zoom: zoomMap)
         
         let count = mapViewModel.getPlaceCount()
         
@@ -167,4 +147,8 @@ class MapViewController: BaseViewController {
         slider.isUserInteractionEnabled = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        mapView.clear()
+        mapView.removeFromSuperview()
+    }
 }

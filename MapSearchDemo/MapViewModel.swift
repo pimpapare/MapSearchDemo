@@ -14,39 +14,28 @@ class MapViewModel: BaseViewModel {
     var map = [LoadingType.refresh.rawValue as ListDiffable]
    
     var dicPlaces:[String:AnyObject]?
-
-    func sizeForBottomOfViewSliderFromTapGesture(constant:CGFloat) -> CGFloat{
-        
-        if constant == -75 {
-            return 0
-        }else{
-            return -75
-        }
-    }
-    
-    func sizeForBottomOfViewSliderFromPanGesture(velocityY:CGFloat) -> CGFloat {
-        
-        if velocityY < 0 {
-            return 0
-        }else{
-            return -75
-        }
-    }
     
     func zoomCamera(sliderValue:Float) -> Float {
-        return (sliderValue * 5) * 4
+
+        let result = 14 - 0.55 * Float(Int(sliderValue * 10))
+        if result < 14 , result > 9 {
+            return 9.5
+        }
+        return result
     }
     
     func distanceValueText(sliderValue:Float) -> String {
         
-        if Int(sliderValue * 50) > 0{
-            return "\(Int(sliderValue * 50)) KM"
+        let result = Int(sliderValue * 50)
+        if result > 0{
+            return "\(result) KM"
         }
         return "1 KM"
     }
     
     func getRadiusFromSliderValue(sliderValue:Float) -> Int {
-        return Int(((sliderValue * 1000) == 0.0) ? 1 : sliderValue  * 1000)
+        let result = Int(sliderValue * 10) * 5
+        return (result == 0) ? 1 : (result * 1000)
     }
     
     func callService(location:String,radius:Int,key:String) {
@@ -73,38 +62,8 @@ class MapViewModel: BaseViewModel {
     
     func getMarker() -> [[String:AnyObject]]?{
         
-        //เก็บ lat lnd name
         let object: MapModel = MapModel(withDictionary: dicPlaces!)
         return object.places
-        
-       /* print("== ",object.getPlacesLocationLatLng(at: 0, key: "lat"))
-        print("== ",object.getPlacesObjects(at: 0, key: "name"))
-        
-        return dicPlaces!
-        for i in 0...object.getPlaceCount() {
-            
-            marker.position = CLLocationCoordinate2D(latitude: CLLocationDegrees(object.getPlacesLocationLatLng(at: i, key: "lat")), longitude: object.getPlacesLocationLatLng(at: i, key: "lng"))
-            var icon:UIImage = UIImage(named: "ic_place")!.withRenderingMode(.alwaysOriginal)
-            icon = self.resizeImage(image:icon,width: 20,height:35)
-            marker.icon = icon
-            
-            marker.map = mapView
-
-        }
- */
-//        for i in 0...Int(objectPlaces?.count ?? 0) {
-//            print("i ",i)
-//            let objectIndex = objectPlaces?[i]
-//            print("objectIndex ",objectIndex)
-//            
-//            let geometryObject = objectIndex?["geometry"] as! [String:AnyObject]
-//            let locationObject = geometryObject?["location"] as! [String:String]
-//
-//            print("geometryObject ",geometryObject)
-//            
-//        }
-        
-//        return [[String:AnyObject]]
     }
     
     func getPlacesObjects(at index:Int, key:String) -> String{
@@ -121,6 +80,10 @@ class MapViewModel: BaseViewModel {
     }
     
     func getPlaceCount() -> Int{
-        return (getMarker()?.count ?? 1) - 1
+        let result:Int = (getMarker()?.count ?? 1) - 1
+        guard result > 0 else {
+            return 0
+        }
+        return result
     }
 }
