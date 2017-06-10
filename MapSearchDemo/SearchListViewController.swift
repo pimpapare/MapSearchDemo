@@ -8,12 +8,10 @@
 
 import UIKit
 
-class SearchListViewController: UIViewController {
+class SearchListViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

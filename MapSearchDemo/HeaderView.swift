@@ -25,16 +25,18 @@ class HeaderView: UIView {
     
     func setInitail(){
         
-        setMenuMapView()
-
         txHeader.text = .txTitleHeader
         
         btnMenuMap.setTitle(.txBtnMap, for: .normal)
         btnMenuSearch.setTitle(.txBtnSearch, for: .normal)
 
-        vTitle.backgroundColor = UIColor.colorCharcoal
-        btnMenuMap.backgroundColor = UIColor.colorWhiteSmoke
-        btnMenuSearch.backgroundColor = UIColor.colorWhiteSmoke
+        vTitle.backgroundColor = UIColor.colorStrikemaster
+        btnMenuMap.backgroundColor = UIColor.colorCharcoal
+        btnMenuSearch.backgroundColor = UIColor.colorCharcoal
+        self.vSelectedMenuMap.backgroundColor = UIColor.colorWhiteSmoke
+        self.vSelectedMenuSearch.backgroundColor = UIColor.colorWhiteSmoke
+        
+        setMenuMapView()
     }
     
     @IBAction func btnMenuMapTapped(_ sender: Any) {
@@ -42,17 +44,15 @@ class HeaderView: UIView {
     }
 
     func setMenuMapView(){
-        self.resetViewTapped()
-        self.vSelectedMenuMap.backgroundColor = UIColor.colorStrikemaster
+        self.resetViewTapped(vSelectedMenuMapAlpha: 0.6, vSelectedMenuSearchAlpha: 0)
     }
     
     @IBAction func btnMenuSearchTapped(_ sender: Any) {
-        self.resetViewTapped()
-        self.vSelectedMenuSearch.backgroundColor = UIColor.colorStrikemaster
+        self.resetViewTapped(vSelectedMenuMapAlpha: 0, vSelectedMenuSearchAlpha: 0.6)
     }
     
-    func resetViewTapped(){
-        self.vSelectedMenuMap.backgroundColor = UIColor.colorCharcoal
-        self.vSelectedMenuSearch.backgroundColor = UIColor.colorCharcoal
+    func resetViewTapped(vSelectedMenuMapAlpha:CGFloat,vSelectedMenuSearchAlpha:CGFloat){
+        self.vSelectedMenuMap.alpha = vSelectedMenuMapAlpha
+        self.vSelectedMenuSearch.alpha = vSelectedMenuSearchAlpha
     }
 }
