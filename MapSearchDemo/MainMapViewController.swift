@@ -42,7 +42,7 @@ class MainMapViewController: BaseViewController,CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        UserDefaults.standard.set(["lat":Double(locValue.latitude),"lng":Double(locValue.longitude)],forKey:"USER_LOCATION")
+        UserDefaults.standard.set(["lat":Double(locValue.latitude),"lng":Double(locValue.longitude)],forKey:.userLocation)
         locationManager.stopUpdatingLocation()
     }
     

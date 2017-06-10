@@ -36,6 +36,18 @@ class BaseViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: yes_text, style: .default, handler:nil))
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    func resizeImage(image: UIImage, width: Int,height:Int) -> UIImage {
+        
+        let rect = CGRect(x: 0, y: 0, width: width, height: height)
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width:width,height:height), false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
 }
 
 

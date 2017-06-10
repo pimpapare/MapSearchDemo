@@ -18,8 +18,11 @@ class Constant {
 public extension String {
     
     public static let GOOGLE_KEY = "AIzaSyCwwzJ3TymPLZz7OW7LfU-pOSlYqpUvQFc"
+    public static let GOOGLE_API = "AIzaSyCZ1BCe4Q7YL1nCa_ovtet4Bjn52tT20T8"
 
     public static let cell = "Cell"
+    
+    public static let userLocation = "USER_LOCATION"
 
     //Main Map
     public static let txTitleHeader = "iOS Developer"

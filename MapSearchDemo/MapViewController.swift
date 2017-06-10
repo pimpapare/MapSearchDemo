@@ -27,9 +27,9 @@ class MapViewController: BaseViewController {
     @IBOutlet weak var heightVCircle: NSLayoutConstraint!
     @IBOutlet weak var widthVCircle: NSLayoutConstraint!
     
+    var zoomMap:Float = 10
     var mapView:GMSMapView!
-    
-    var mapViewModel:MapViewModel!
+    lazy var mapViewModel:MapViewModel! = MapViewModel(delegate: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +40,11 @@ class MapViewController: BaseViewController {
     func setInitialObjects(){
         
         mapView = GMSMapView()
-        mapViewModel = MapViewModel()
     }
     
     func setInitailUI(){
         
-        addGooleMapView(zoom: 1)
+        addGooleMapView(zoom: zoomMap)
         
         let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         vFooter.addGestureRecognizer(gestureRecognizer)
@@ -62,7 +61,9 @@ class MapViewController: BaseViewController {
     
     func addGooleMapView(zoom:Float){
         
-        let camera = GMSCameraPosition.camera(withLatitude: 18.790240, longitude: 98.984865, zoom: zoom)
+        let userLocation = UserDefaults.standard.object(forKey:.userLocation) as? [String:Double]
+        
+        let camera = GMSCameraPosition.camera(withLatitude: userLocation?["lat"] ?? 18.0, longitude: userLocation?["lng"] ?? 98.0, zoom: zoom)
         mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: Constant.DEVICE_W, height: Constant.DEVICE_H-110), camera:camera)
         
         self.view.addSubview(mapView!)
@@ -74,6 +75,12 @@ class MapViewController: BaseViewController {
     @IBAction func btnSearchPressed(_ sender: Any) {
         
         showLoading()
+        btnSearch.isUserInteractionEnabled = false
+        slider.isUserInteractionEnabled = false
+        callServiceMapPlace()
+    }
+    
+    func callServiceMapPlace(){
         
         let point:CGPoint = (mapView?.center)!
         let coor:CLLocationCoordinate2D = (mapView?.projection.coordinate(for: point))!
@@ -81,8 +88,7 @@ class MapViewController: BaseViewController {
         let chooselat:Double = coor.latitude
         let chooselng:Double = coor.longitude
         
-        print("lat lng",chooselat,chooselng)
-        hideLoading()
+        mapViewModel.callService(location: "\((chooselat == -180.0) ? 18.0:chooselat),\((chooselng == -180.0) ? 98.0:chooselng)", radius: mapViewModel.getRadiusFromSliderValue(sliderValue: slider.value), key: .GOOGLE_API)
     }
     
     @IBAction func vSliderTapped(_ sender: Any) {
@@ -94,7 +100,11 @@ class MapViewController: BaseViewController {
         if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
             
             let velocity : CGPoint =  gestureRecognizer.velocity(in:vSlider)
-            animationFooter(constant: mapViewModel.sizeForBottomOfViewSliderFromPanGesture(velocityY: velocity.y))
+            let isVerticalGesture:Bool = velocity.y > velocity.x
+            
+            if (isVerticalGesture) {
+                animationFooter(constant: mapViewModel.sizeForBottomOfViewSliderFromPanGesture(velocityY: velocity.y))
+            }
         }
     }
     
@@ -123,7 +133,38 @@ class MapViewController: BaseViewController {
         
         animationCircle(alpha: 0.3)
         mapView?.clear()
-        
-        addGooleMapView(zoom: mapViewModel.zoomCamera(sliderValue: slider.value))
+        zoomMap = mapViewModel.zoomCamera(sliderValue: slider.value)
+        addGooleMapView(zoom: zoomMap)
     }
+    
+    override func onDataDidLoad() {
+        
+        hideLoading()
+        btnSearch.isUserInteractionEnabled = true
+        slider.isUserInteractionEnabled = true
+
+        mapView?.clear()
+        addGooleMapView(zoom: zoomMap)
+        
+        let count = mapViewModel.getPlaceCount()
+        
+        for i in 0...count {
+            
+            let marker = GMSMarker()
+            marker.position = CLLocationCoordinate2D(latitude: CLLocationDegrees(mapViewModel.getPlacesLocationLatLng(at: i, key: "lat")), longitude: mapViewModel.getPlacesLocationLatLng(at: i, key: "lng"))
+            var icon:UIImage = UIImage(named: "ic_place")!.withRenderingMode(.alwaysOriginal)
+            icon = self.resizeImage(image:icon,width: 35,height:35)
+            marker.icon = icon
+            
+            marker.map = mapView
+        }
+    }
+    
+    override func onDataDidLoadErrorWithMessage(errorMessage: String) {
+        
+        hideLoading()
+        btnSearch.isUserInteractionEnabled = true
+        slider.isUserInteractionEnabled = true
+    }
+    
 }

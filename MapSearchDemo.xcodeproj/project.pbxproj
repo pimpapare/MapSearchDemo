@@ -38,6 +38,10 @@
 		1A6648CB1EEBA4D2004E1AFE /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6648CA1EEBA4D2004E1AFE /* LocationService.swift */; };
 		1AB36A651EEA77AF008B74E4 /* SearchListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB36A641EEA77AF008B74E4 /* SearchListCollectionViewCell.swift */; };
 		1AB36A671EEA77B9008B74E4 /* SearchListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AB36A661EEA77B9008B74E4 /* SearchListCollectionViewCell.xib */; };
+		1AC2BE391EEBC8520028FF87 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2BE381EEBC8520028FF87 /* APIRequest.swift */; };
+		1AC2BE3B1EEBC8590028FF87 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2BE3A1EEBC8590028FF87 /* Router.swift */; };
+		1AC2BE3E1EEBC94E0028FF87 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2BE3D1EEBC94E0028FF87 /* MapModel.swift */; };
+		1AC2BE401EEBCDD90028FF87 /* MapSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2BE3F1EEBCDD90028FF87 /* MapSectionController.swift */; };
 		453B56E3F0CAAAF6206FE926 /* Pods_MapSearchDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9BF5ED9B4CDB7393C94DA3E /* Pods_MapSearchDemo.framework */; };
 		9F9A439C4692126C06BF1579 /* Pods_MapSearchDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BE62F12415BB4A6999CD1D /* Pods_MapSearchDemoUITests.framework */; };
 		BEF025622F99986099D8238E /* Pods_MapSearchDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90044E12792E5B992F15F839 /* Pods_MapSearchDemoTests.framework */; };
@@ -100,6 +104,10 @@
 		1A6648CA1EEBA4D2004E1AFE /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		1AB36A641EEA77AF008B74E4 /* SearchListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListCollectionViewCell.swift; sourceTree = "<group>"; };
 		1AB36A661EEA77B9008B74E4 /* SearchListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchListCollectionViewCell.xib; sourceTree = "<group>"; };
+		1AC2BE381EEBC8520028FF87 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		1AC2BE3A1EEBC8590028FF87 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		1AC2BE3D1EEBC94E0028FF87 /* MapModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
+		1AC2BE3F1EEBCDD90028FF87 /* MapSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSectionController.swift; sourceTree = "<group>"; };
 		3CD85F4BF6D6FB7FB351FD66 /* Pods-MapSearchDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapSearchDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapSearchDemoTests/Pods-MapSearchDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		687410168FE84A6A3010770B /* Pods-MapSearchDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapSearchDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapSearchDemo/Pods-MapSearchDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		75646EE2A0A741F40B607BDE /* Pods-MapSearchDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapSearchDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapSearchDemoTests/Pods-MapSearchDemoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +216,7 @@
 				1A60D5C01EE86FE90014049C /* AppDelegate.swift */,
 				1A60D5C21EE86FE90014049C /* LaunchScreenViewController.swift */,
 				1A60D5C41EE86FE90014049C /* Main.storyboard */,
+				1AC2BE3C1EEBC8900028FF87 /* APIRequest */,
 				1A60D60B1EE876FE0014049C /* Helper */,
 				1A60D6091EE876E70014049C /* View */,
 				1A60D60A1EE876F20014049C /* Menu */,
@@ -290,6 +299,8 @@
 				1A6648CA1EEBA4D2004E1AFE /* LocationService.swift */,
 				1A60D5F21EE873C30014049C /* MapViewController.swift */,
 				1A4987E21EEA752500885809 /* MapViewModel.swift */,
+				1AC2BE3D1EEBC94E0028FF87 /* MapModel.swift */,
+				1AC2BE3F1EEBCDD90028FF87 /* MapSectionController.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -300,6 +311,15 @@
 				1A60D5F41EE873D10014049C /* SearchListViewController.swift */,
 			);
 			name = SearchList;
+			sourceTree = "<group>";
+		};
+		1AC2BE3C1EEBC8900028FF87 /* APIRequest */ = {
+			isa = PBXGroup;
+			children = (
+				1AC2BE381EEBC8520028FF87 /* APIRequest.swift */,
+				1AC2BE3A1EEBC8590028FF87 /* Router.swift */,
+			);
+			name = APIRequest;
 			sourceTree = "<group>";
 		};
 		49A35C300EC41883BE1B0583 /* Frameworks */ = {
@@ -614,12 +634,15 @@
 			files = (
 				1A60D5FB1EE875C50014049C /* Constant.swift in Sources */,
 				1A60D6001EE876680014049C /* UIButtonExtension.swift in Sources */,
+				1AC2BE3B1EEBC8590028FF87 /* Router.swift in Sources */,
 				1A60D6081EE876A40014049C /* BaseTableViewController.swift in Sources */,
 				1A6648CB1EEBA4D2004E1AFE /* LocationService.swift in Sources */,
 				1A60D6031EE876680014049C /* UIViewExtension.swift in Sources */,
+				1AC2BE3E1EEBC94E0028FF87 /* MapModel.swift in Sources */,
 				1A60D5F11EE871BC0014049C /* MainMapViewController.swift in Sources */,
 				1A4987E01EEA71F500885809 /* BaseViewController.swift in Sources */,
 				1AB36A651EEA77AF008B74E4 /* SearchListCollectionViewCell.swift in Sources */,
+				1AC2BE401EEBCDD90028FF87 /* MapSectionController.swift in Sources */,
 				1A60D5F71EE873FA0014049C /* HeaderView.swift in Sources */,
 				1A6648C91EEBA2E1004E1AFE /* Annotation.swift in Sources */,
 				1A60D5C31EE86FE90014049C /* LaunchScreenViewController.swift in Sources */,
@@ -634,6 +657,7 @@
 				1A4987E11EEA71F500885809 /* BaseViewModel.swift in Sources */,
 				1A60D5F31EE873C30014049C /* MapViewController.swift in Sources */,
 				1A4987DF1EEA71F500885809 /* BaseProtocol.swift in Sources */,
+				1AC2BE391EEBC8520028FF87 /* APIRequest.swift in Sources */,
 				1A60D6181EE87A450014049C /* NSBundleExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
