@@ -52,6 +52,10 @@ class MapViewModel: BaseViewModel {
         _ = APIRequest.request(withRouter: router, withHandler: getListMapHandler())
     }
     
+    func setImageURL(imageRef:String,gooleAPI:String) -> String {
+        return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=\(imageRef)&key=\(gooleAPI)"
+    }
+    
     func getListMapHandler() -> APIRequest.completionHandler {
         
         return { [weak self] (response, error) in
@@ -93,7 +97,7 @@ class MapViewModel: BaseViewModel {
         
         if let photosObject = objectIndex?["photos"] as? [[String:AnyObject]] {
             let referenceObject = photosObject[0]["photo_reference"]
-            return referenceObject as? String ?? " "
+            return setImageURL(imageRef: referenceObject as? String ?? " ", gooleAPI: .GOOGLE_API)
         }
         return " "
     }

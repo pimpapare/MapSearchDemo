@@ -14,8 +14,6 @@ public protocol BaseViewModelDelegate: class {
     func onDataDidLoad()
     func onDataDidLoadErrorWithMessage(errorMessage:String)
 
-    func onImageDataDidLoad()
-
     func refrashCollectionView()
 
     // Loading

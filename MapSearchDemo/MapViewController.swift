@@ -103,7 +103,6 @@ class MapViewController: BaseViewController {
         mapView.removeFromSuperview()
         zoomMap = mapViewModel.zoomCamera(sliderValue: slider.value)
         addGoogleMapView(zoom: zoomMap)
-
     }
     
     @IBAction func sliderHandlerDoneWithSender(_ sender: Any) {

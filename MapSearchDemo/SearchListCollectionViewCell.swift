@@ -8,28 +8,28 @@
 
 import UIKit
 import moa
+import Alamofire
+import AlamofireImage
 
 class SearchListCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "SearchListCollectionViewCell"
-
+    var searchViewModel:SearchViewModel?
+    
     @IBOutlet weak var imageCell: UIImageView!
     @IBOutlet weak var titleCell: UILabel!
     @IBOutlet weak var distanceCell: UILabel!
     
     override func awakeFromNib() {
         self.frame = CGRect(x:0,y:0,width:UIScreen.main.bounds.width,height:self.frame.size.height)
+        let searchListViewController = SearchListViewController()
+        searchViewModel = SearchViewModel(delegate: searchListViewController)
     }
     
     func setCell(objects:Subscribe,index:Int){
                 
         self.titleCell.text = objects.name
-//            //obejcts?.getPlacesObjects(at: index, key: "english")
         self.distanceCell.text = "\(objects.distance)"
-            //obejcts?.getPlacesObjects(at: index, key: "thai")
-        self.imageCell.moa.url = "http://www.discoverythailand.com/Images/Place/ID_976_Large.jpg"
-  
-        //Call Image service self.searchViewModel.getMapObjects(objects:self.mapViewModel.getMapObjects())
-
+        self.imageCell.moa.url = objects.image  
     }
 }

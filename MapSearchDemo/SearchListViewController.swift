@@ -50,11 +50,6 @@ class SearchListViewController: BaseViewController {
         flowLayout.invalidateLayout()
     }
     
-    func callServiceImageMapPlace(image:String){
-        
-        searchViewModel.callService(maxwidth: 400, photoreference: image, key: .GOOGLE_API)
-    }
-    
     override public func refrashCollectionView() {
         adapter.performUpdates(animated: true, completion: nil)
     }
@@ -67,18 +62,8 @@ class SearchListViewController: BaseViewController {
         
         adapter.collectionView = collectionView
         
-        if #available(iOS 10.0, *) {
-            adapter.collectionView?.refreshControl = UIRefreshControl()
-            adapter.collectionView?.refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
-        }
         adapter.dataSource = self
         adapter.scrollViewDelegate = self
-    }
-    
-    func pullToRefresh() {
-        //        self.mapViewModel = MapViewModel(delegate: self)
-        //        self.mapViewModel.isPullToRefresh = true
-        //        self.mapViewModel.getMovieList()
     }
 }
 

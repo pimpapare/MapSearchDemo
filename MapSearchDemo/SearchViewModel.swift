@@ -26,12 +26,23 @@ class SearchViewModel: BaseViewModel {
         let mapObjects = objects as [AnyObject]
         print("mapObjects ",mapObjects)
 
-        callService(maxwidth: 400, photoreference: mapObjects[0]["image"] as? String ?? "", key: .GOOGLE_API)
+//        callService(maxwidth: 400, photoreference: mapObjects[0]["image"] as? String ?? "", key: .GOOGLE_API)
     }
     
-    func callService(maxwidth:Int,photoreference:String,key:String) {
+    func callService(maxwidth:Int,photoreference:String,key:String,completionHandler: @escaping (NSData) -> ()){
+        
         let router = Router.getPhotoList(maxwidth: maxwidth, photoreference: photoreference, key: key)
-        _ = APIRequest.requestImage(withRouter: router, withHandler: getListImageHandler())
+        _ = APIRequest.requestImage(withRouter: router, withHandler: { [weak self] (response, error) in
+            
+            if error == nil {
+                
+                let data = NSData(data: UIImagePNGRepresentation(response as! UIImage)!)
+                completionHandler(data)
+                
+            } else {
+                completionHandler(NSData())
+            }
+        })
     }
     
     func getListImageHandler() -> APIRequest.completionHandler {
@@ -52,10 +63,10 @@ class SearchViewModel: BaseViewModel {
                 // save ใส่ realm
                 
                 
-                self?.delegate?.onImageDataDidLoad()
+//                self?.delegate?.onImageDataDidLoad()
                 
             } else {
-                self?.delegate?.onDataDidLoadErrorWithMessage(errorMessage: (error?.localizedDescription)!)
+//                self?.delegate?.onDataDidLoadErrorWithMessage(errorMessage: (error?.localizedDescription)!)
             }
         }
     }
