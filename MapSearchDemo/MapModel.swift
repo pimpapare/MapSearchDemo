@@ -19,23 +19,6 @@ class MapModel: BaseModel {
         self.dic = dict
         self.places = dict["results"] as? [[String : AnyObject]]
     }
-    
-//    func getPlacesObjects(at index:Int, key:String) -> String{
-//        let getObjects = PlaceValue.init(places: places)
-//        return getObjects[index,key] as! String
-//    }
-//    
-//    func getPlacesLocationLatLng(at index:Int, key:String) -> Double{
-//        
-//        let objectIndex = places?[index]        
-//        let geometryObject = objectIndex?["geometry"] as! [String:AnyObject]
-//        let locationObject = geometryObject["location"] as! [String:AnyObject]
-//        return locationObject[key] as! Double
-//    }
-//    
-//    func getPlaceCount() -> Int{
-//        return places?.count
-//    }
 }
 
 class MapImageModel: BaseModel {

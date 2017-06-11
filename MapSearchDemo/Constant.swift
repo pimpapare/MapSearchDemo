@@ -19,6 +19,12 @@ public extension NSNotification.Name {
     public static let updateCell:NSNotification.Name = NSNotification.Name(rawValue: "updateCell")
 }
 
+public extension Double {
+    
+    public static let defaultLat = 18.7061
+    public static let defaultLng = 98.9817
+
+}
 public extension String {
     
     public static let GOOGLE_KEY = "AIzaSyCwwzJ3TymPLZz7OW7LfU-pOSlYqpUvQFc"

@@ -84,7 +84,7 @@ class MapViewController: BaseViewController {
         let chooselat:Double = coor.latitude
         let chooselng:Double = coor.longitude
         
-        mapViewModel.callService(location: "\((chooselat == -180.0) ? 18.0:chooselat),\((chooselng == -180.0) ? 98.0:chooselng)", radius: mapViewModel.getRadiusFromSliderValue(sliderValue: slider.value), key: .GOOGLE_API)
+        mapViewModel.callService(location: "\((chooselat == -180.0) ? .defaultLat:chooselat),\((chooselng == -180.0) ? .defaultLng:chooselng)", radius: mapViewModel.getRadiusFromSliderValue(sliderValue: slider.value), key: .GOOGLE_API)
     }
     
     func animationCircle(alpha:CGFloat){
@@ -96,17 +96,19 @@ class MapViewController: BaseViewController {
     
     @IBAction func sliderHandlerChangeState(_ sender: Any) {
         
-        animationCircle(alpha: 0.1)
-        txDistance.text = mapViewModel.distanceValueText(sliderValue: slider.value)
-    }
-    
-    @IBAction func sliderHandlerDoneWithSender(_ sender: Any) {
-        
         animationCircle(alpha: 0.3)
+        txDistance.text = mapViewModel.distanceValueText(sliderValue: slider.value)
+
         mapView?.clear()
         mapView.removeFromSuperview()
         zoomMap = mapViewModel.zoomCamera(sliderValue: slider.value)
         addGoogleMapView(zoom: zoomMap)
+
+    }
+    
+    @IBAction func sliderHandlerDoneWithSender(_ sender: Any) {
+        
+        animationCircle(alpha: 0.1)
     }
     
     override func onDataDidLoad() {
@@ -130,10 +132,11 @@ class MapViewController: BaseViewController {
             
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-            var icon:UIImage = UIImage(named: "ic_place")!.withRenderingMode(.alwaysOriginal)
+            
+            var icon:UIImage = UIImage(named: mapViewModel.getArrayMarker())!.withRenderingMode(.alwaysOriginal)
             icon = self.resizeImage(image:icon,width: 35,height:35)
             marker.icon = icon
-            
+                        
             marker.map = mapView
             mapViewModel.setMapObjects(id:i, name: name, lat: lat, lng: lng, image: image, distance: distance)
         }

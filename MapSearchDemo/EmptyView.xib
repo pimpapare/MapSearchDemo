@@ -15,30 +15,35 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bcm-on-fyE">
-                    <rect key="frame" x="161.5" y="487" width="53" height="30"/>
-                    <state key="normal" title="Refresh"/>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select your location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="db9-Rf-nDJ">
-                    <rect key="frame" x="85.5" y="323" width="204" height="21"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_service_unavailable" translatesAutoresizingMaskIntoConstraints="NO" id="DwR-S7-RYZ">
+                    <rect key="frame" x="125" y="221" width="125" height="125"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="125" id="FvH-8W-rR9"/>
+                        <constraint firstAttribute="height" constant="125" id="hBw-dw-f4D"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, Please select location on map and try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rO-Rg-Kvd">
+                    <rect key="frame" x="37.5" y="358" width="300" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="de6-Ti-gwG"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" red="0.80003464219999998" green="0.80001723769999999" blue="0.80002069470000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="db9-Rf-nDJ" firstAttribute="centerX" secondItem="RoF-su-XiP" secondAttribute="centerX" id="3M6-Ey-hiP"/>
-                <constraint firstAttribute="trailing" secondItem="Bcm-on-fyE" secondAttribute="trailing" constant="160.5" id="9NJ-6i-uJJ"/>
-                <constraint firstAttribute="bottom" secondItem="Bcm-on-fyE" secondAttribute="bottom" constant="150" id="Cqw-wj-Z5S"/>
-                <constraint firstItem="Bcm-on-fyE" firstAttribute="leading" secondItem="RoF-su-XiP" secondAttribute="leading" constant="161.5" id="Uge-US-w02"/>
-                <constraint firstItem="db9-Rf-nDJ" firstAttribute="centerY" secondItem="RoF-su-XiP" secondAttribute="centerY" id="WkF-YE-aqf"/>
-                <constraint firstItem="Bcm-on-fyE" firstAttribute="top" secondItem="RoF-su-XiP" secondAttribute="top" constant="487" id="YDN-GG-xu1"/>
+                <constraint firstItem="4rO-Rg-Kvd" firstAttribute="top" secondItem="DwR-S7-RYZ" secondAttribute="bottom" constant="12" id="54G-Vf-z9f"/>
+                <constraint firstItem="DwR-S7-RYZ" firstAttribute="centerX" secondItem="RoF-su-XiP" secondAttribute="centerX" id="Aop-GR-u8H"/>
+                <constraint firstItem="4rO-Rg-Kvd" firstAttribute="centerX" secondItem="RoF-su-XiP" secondAttribute="centerX" id="LRm-Qq-VN2"/>
+                <constraint firstItem="DwR-S7-RYZ" firstAttribute="centerY" secondItem="RoF-su-XiP" secondAttribute="centerY" constant="-50" id="gPR-4D-22T"/>
+                <constraint firstItem="4rO-Rg-Kvd" firstAttribute="centerX" secondItem="DwR-S7-RYZ" secondAttribute="centerX" id="oL9-66-fYY"/>
             </constraints>
-            <connections>
-                <outlet property="button" destination="Bcm-on-fyE" id="3Eq-VD-i7P"/>
-            </connections>
             <point key="canvasLocation" x="-82" y="-273"/>
         </view>
     </objects>
+    <resources>
+        <image name="ic_service_unavailable" width="125" height="125"/>
+    </resources>
 </document>

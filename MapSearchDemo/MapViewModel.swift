@@ -17,10 +17,12 @@ class MapViewModel: BaseViewModel {
     var realmObjects:RealmObjects = RealmObjects()
     
     func zoomCamera(sliderValue:Float) -> Float {
-
-        let result = 14 - 0.55 * Float(Int(sliderValue * 10))
-        if result < 14 , result > 9 {
-            return 9.5
+        
+        let result = 15 - 0.55 * Float(Int(sliderValue * 10))
+        if result < 14 , result > 12 {
+            return 11
+        }else if result < 12 , result > 9 {
+            return 10
         }
         return result
     }
@@ -32,6 +34,12 @@ class MapViewModel: BaseViewModel {
             return "\(result) KM"
         }
         return "1 KM"
+    }
+    
+    func getArrayMarker() -> String{
+        let iconNameArray = ["ic_place_green","ic_place_blue","ic_place_yellow"]
+        let randomIndex = Int(arc4random_uniform(UInt32(iconNameArray.count)))
+        return iconNameArray[randomIndex] as String
     }
     
     func getRadiusFromSliderValue(sliderValue:Float) -> Int {
@@ -51,7 +59,7 @@ class MapViewModel: BaseViewModel {
             if let response = response as? MapModel {
                 
                 self?.dicPlaces = response.dic
-
+                
                 self?.map.append(response)
                 self?.delegate?.onDataDidLoad()
                 
@@ -62,9 +70,7 @@ class MapViewModel: BaseViewModel {
     }
     
     func getMarker() -> [[String:AnyObject]]?{
-        
         let object: MapModel = MapModel(withDictionary: dicPlaces!)
-        print("object ",object.places)
         return object.places
     }
     
@@ -84,30 +90,33 @@ class MapViewModel: BaseViewModel {
     func getPlacesImage(at index:Int) -> String{
         
         let objectIndex = getMarker()?[index]
-        let photosObject = objectIndex?["photos"] as! [[String:AnyObject]]
-        let referenceObject = photosObject[0]["photo_reference"]
-        return referenceObject as? String ?? " "
+        
+        if let photosObject = objectIndex?["photos"] as? [[String:AnyObject]] {
+            let referenceObject = photosObject[0]["photo_reference"]
+            return referenceObject as? String ?? " "
+        }
+        return " "
     }
     
     func getUserLocation() -> (Double,Double) {
         let userLocation = UserDefaults.standard.object(forKey:.userLocation) as? [String:Double]
-        return (userLocation?["lat"] ?? 18.0, userLocation?["lng"] ?? 98.0)
+        return (userLocation?["lat"] ?? .defaultLat, userLocation?["lng"] ?? .defaultLng)
     }
     
     func getCalculateDistance(lat :Double,lng :Double) -> Int{
-
+        
         print("lat ",self.getUserLocation().0)
         print("lng ",self.getUserLocation().1)
-
+        
         let coordinateUserLocation = CLLocation(latitude: self.getUserLocation().0, longitude: self.getUserLocation().1)
         let coordinateUserSelectedLocation = CLLocation(latitude: lat, longitude: lat)
-    
+        
         
         let distanceInMeters = coordinateUserLocation.distance(from: coordinateUserSelectedLocation)
-    
+        
         return Int(distanceInMeters / 1000.0) //km
     }
-
+    
     func getPlaceCount() -> Int{
         let result:Int = (getMarker()?.count ?? 1) - 1
         guard result > 0 else {
@@ -117,23 +126,20 @@ class MapViewModel: BaseViewModel {
     }
     
     func setMapObjects(id:Int, name:String,lat:Double,lng:Double,image:String,distance:Int){
-        
-//        for title in defaultSubscribe {
         realmObjects.writeMapObject(id:id, name: name, lat: lat, lng: lng,image:image, distance: distance)
-//        }
     }
     
-//    func setMapImageWithIndex(id:Int, image:Data){
-//        
-//        //        for title in defaultSubscribe {
-//        let subscribe = Subscribe()
-//
-//        let objectMap = realm.objects(Subscribe.self).filter("id =\(id)")
-//     
-//        try? realm.write({
-//            for channel in objectMap {
-//                channel.image = image
-//            }
-//        })
-//    }
- }
+    //    func setMapImageWithIndex(id:Int, image:Data){
+    //
+    //        //        for title in defaultSubscribe {
+    //        let subscribe = Subscribe()
+    //
+    //        let objectMap = realm.objects(Subscribe.self).filter("id =\(id)")
+    //
+    //        try? realm.write({
+    //            for channel in objectMap {
+    //                channel.image = image
+    //            }
+    //        })
+    //    }
+}

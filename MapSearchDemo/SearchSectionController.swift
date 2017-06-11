@@ -21,7 +21,7 @@ class SearchSectionController: ListSectionController {
     
     override func numberOfItems() -> Int {
         
-        objects = realmObject?.getMapObjects()
+        objects = realmObject?.getMapObjectsWithSortName()
         return objects?.count ?? 0
     }
     
@@ -45,7 +45,7 @@ class SearchSectionController: ListSectionController {
     }
     
     override func didUpdate(to object: Any) {
-        objects = realmObject?.getMapObjects()
+        objects = realmObject?.getMapObjectsWithSortName()
     }
     
     override func didSelectItem(at index: Int) {

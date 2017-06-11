@@ -66,11 +66,12 @@ class RealmObjects: NSObject {
         }
         
         let objects = realm.objects(Subscribe.self).toArray(ofType : Subscribe.self) as [Subscribe]
+        return objects
+    }
+    
+    func getMapObjectsWithSortName() -> [Subscribe]{
         
-        let sortedMovies = objects.sorted(by: { $0.name < $1.name })
-
-        print("== ",sortedMovies)
-        
+        let sortedMovies = getMapObjects().sorted(by: { $0.name < $1.name })
         return sortedMovies
     }
 }
