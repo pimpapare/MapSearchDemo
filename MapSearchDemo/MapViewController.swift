@@ -21,7 +21,8 @@ class MapViewController: BaseViewController {
     @IBOutlet weak var vTitleSlider: UIView!
     @IBOutlet weak var vCircle: UIViewExtension!
     @IBOutlet weak var txDistance: UILabel!
-    
+    @IBOutlet weak var txLocation: UILabel!
+
     @IBOutlet weak var btnSearch: UIButtonExtension!
     @IBOutlet weak var bottomViewSlider: NSLayoutConstraint!
     @IBOutlet weak var heightVCircle: NSLayoutConstraint!
@@ -78,14 +79,11 @@ class MapViewController: BaseViewController {
         btnSearch.isUserInteractionEnabled = false
         slider.isUserInteractionEnabled = false
         
-        let point:CGPoint = (mapView?.center)!
-        let coor:CLLocationCoordinate2D = (mapView?.projection.coordinate(for: point))!
+        let lat = centerMarkerLocation().0
+        let lng = centerMarkerLocation().1
         
-        let chooselat:Double = (coor.latitude == -180) ? .defaultLat : coor.latitude
-        let chooselng:Double = (coor.longitude == -180) ? .defaultLng : coor.longitude
-        
-        UserDefaults.standard.set(["lat":Double(chooselat),"lng":Double(chooselng)],forKey:.userSelectedLocation)
-        mapViewModel.callService(location: "\((chooselat == -180.0) ? .defaultLat:chooselat),\((chooselng == -180.0) ? .defaultLng:chooselng)", radius: mapViewModel.getRadiusFromSliderValue(sliderValue: slider.value), key: .GOOGLE_API)
+        UserDefaults.standard.set(["lat":Double(lat),"lng":Double(lng)],forKey:.userSelectedLocation)
+        mapViewModel.callService(location: "\((lat == -180.0) ? .defaultLat:lat),\((lng == -180.0) ? .defaultLng:lng)", radius: mapViewModel.getRadiusFromSliderValue(sliderValue: slider.value), key: .GOOGLE_API)
     }
     
     func animationCircle(alpha:CGFloat){
@@ -95,11 +93,23 @@ class MapViewController: BaseViewController {
         })
     }
     
+    func centerMarkerLocation() -> (Double,Double) {
+        
+        let point:CGPoint = (mapView?.center)!
+        let coor:CLLocationCoordinate2D = (mapView?.projection.coordinate(for: point))!
+        
+        let chooselat:Double = (coor.latitude == -180) ? .defaultLat : coor.latitude
+        let chooselng:Double = (coor.longitude == -180) ? .defaultLng : coor.longitude
+
+        return (chooselat,chooselng)
+    }
+
     @IBAction func sliderHandlerChangeState(_ sender: Any) {
         
         animationCircle(alpha: 0.2)
+        txLocation.isHidden = false
         txDistance.text = mapViewModel.distanceValueText(sliderValue: slider.value)
-
+        txLocation.text = "lat: \(centerMarkerLocation().0),\n lng: \(centerMarkerLocation().1)"
         mapView?.clear()
         mapView.removeFromSuperview()
         zoomMap = mapViewModel.zoomCamera(sliderValue: slider.value)
@@ -151,6 +161,7 @@ class MapViewController: BaseViewController {
     
     func finishedLoading(){
         hideLoading()
+        txLocation.isHidden = true
         animationCircle(alpha: 0.0)
         btnSearch.loadingIndicator(show: false)
         btnSearch.isUserInteractionEnabled = true

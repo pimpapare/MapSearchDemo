@@ -8,7 +8,6 @@
 
 import UIKit
 import IGListKit
-import MapKit
 
 class MapViewModel: BaseViewModel {
     

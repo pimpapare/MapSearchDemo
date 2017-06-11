@@ -82,7 +82,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="9a6-Rb-ITc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dH2-db-7l3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dH2-db-7l3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -109,10 +109,20 @@
                         <subviews>
                             <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Y7-Vb-ku6" customClass="UIViewExtension" customModule="MapSearchDemo" customModuleProvider="target">
                                 <rect key="frame" x="47" y="123.5" width="280" height="280"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lat:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBG-ok-U4b">
+                                        <rect key="frame" x="30" y="162" width="220" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="0.35294117650000001" green="0.53725490200000003" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="kBG-ok-U4b" secondAttribute="trailing" constant="30" id="OOC-T2-h17"/>
+                                    <constraint firstItem="kBG-ok-U4b" firstAttribute="centerY" secondItem="0Y7-Vb-ku6" secondAttribute="centerY" constant="30" id="bTh-tB-g4A"/>
                                     <constraint firstAttribute="height" constant="280" id="fV6-cn-D5e"/>
                                     <constraint firstAttribute="width" constant="280" id="jbR-bc-yPM"/>
+                                    <constraint firstItem="kBG-ok-U4b" firstAttribute="leading" secondItem="0Y7-Vb-ku6" secondAttribute="leading" constant="30" id="xoR-u1-hoy"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -263,6 +273,7 @@
                         <outlet property="heightVCircle" destination="fV6-cn-D5e" id="ZOh-Xj-yfs"/>
                         <outlet property="slider" destination="NUf-17-8hX" id="Hte-Ig-hd9"/>
                         <outlet property="txDistance" destination="368-5R-HVp" id="4Dt-kk-IAt"/>
+                        <outlet property="txLocation" destination="kBG-ok-U4b" id="XUp-NX-5eU"/>
                         <outlet property="txSlider" destination="qWH-cW-nLu" id="WWQ-IM-tOe"/>
                         <outlet property="vCircle" destination="0Y7-Vb-ku6" id="te6-pR-8j9"/>
                         <outlet property="vFooter" destination="pAs-aW-FRL" id="Rj6-ix-HiU"/>
