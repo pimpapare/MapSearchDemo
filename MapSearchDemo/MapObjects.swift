@@ -16,7 +16,7 @@ class Subscribe: Object {
     dynamic var lat = 0.0
     dynamic var lng = 0.0
     dynamic var image = ""
-    dynamic var distance = 0
+    dynamic var distance = ""
     
     override class func primaryKey() -> String? {
         return "id"

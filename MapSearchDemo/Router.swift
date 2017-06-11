@@ -28,7 +28,7 @@ public enum Router: MapRouter {
 extension Router {
     
     public var url: String {
-        return "https://maps.googleapis.com/maps/api/"
+        return .BASE_URL
     }
     
     public var method: Alamofire.HTTPMethod {

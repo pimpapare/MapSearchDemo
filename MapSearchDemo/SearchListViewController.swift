@@ -14,13 +14,10 @@ class SearchListViewController: BaseViewController {
     var observer : NSObjectProtocol!
     
     lazy var searchViewModel:SearchViewModel = SearchViewModel(delegate: self)
-    lazy var mapViewModel:MapViewModel! = MapViewModel(delegate: self)
     
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
     }()
-    
-    //:MovieViewModelProtocol = MovieViewModel(delegate: self)
     
     var collectionView:UICollectionView?
     
@@ -35,21 +32,9 @@ class SearchListViewController: BaseViewController {
 
             self.setCollectionView()
             self.adapter.performUpdates(animated: true, completion: nil)
-            //Call Image service self.searchViewModel.getMapObjects(objects:self.mapViewModel.getMapObjects())
         }
     }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
         
-        collectionView?.frame = CGRect(x:0,y:0,width: Constant.DEVICE_W, height: Constant.DEVICE_H-120)
-        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
-            return
-        }
-        
-        flowLayout.invalidateLayout()
-    }
-    
     override public func refrashCollectionView() {
         adapter.performUpdates(animated: true, completion: nil)
     }
@@ -74,13 +59,6 @@ extension SearchListViewController: ListAdapterDataSource {
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        //        switch object {
-        //        case is MapModel:
-        //            return SearchSectionController()
-        ////        default: return ListSectionController()
-        //        default: return ListSectionController()
-        //
-        //        }
         return SearchSectionController()
     }
     
@@ -91,18 +69,8 @@ extension SearchListViewController: ListAdapterDataSource {
 }
 
 extension SearchListViewController: UIScrollViewDelegate{
-    //, EmptyViewDelegate {
     
     func didReload() {
         adapter.performUpdates(animated: true, completion: nil)
     }
-    
-    //    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-    //        let distance = scrollView.contentSize.height - (targetContentOffset.pointee.y + scrollView.bounds.height)
-    //        let nextMovieAvailable = (self.movieViewModel.movie as? [MapModel])?.last?.nextMovieAvailable
-    //        if nextMovieAvailable == true && distance < 200 {
-    //            self.mapViewModel.map.append(LoadingType.loadmore.rawValue as ListDiffable)
-    //            adapter.performUpdates(animated: true, completion: nil)
-    //        }
-    //    }
 }

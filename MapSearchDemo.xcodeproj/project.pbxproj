@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0B43D01EED6C6D000866E6 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0B43CF1EED6C6D000866E6 /* SearchViewModel.swift */; };
 		1A4987DE1EEA71F500885809 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4987D71EEA71F500885809 /* BaseResponse.swift */; };
 		1A4987DF1EEA71F500885809 /* BaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4987D91EEA71F500885809 /* BaseProtocol.swift */; };
 		1A4987E01EEA71F500885809 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4987DB1EEA71F500885809 /* BaseViewController.swift */; };
 		1A4987E11EEA71F500885809 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4987DD1EEA71F500885809 /* BaseViewModel.swift */; };
 		1A4987E31EEA752500885809 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4987E21EEA752500885809 /* MapViewModel.swift */; };
 		1A5AC2B91EECF67300D87D59 /* MapObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5AC2B81EECF67300D87D59 /* MapObjects.swift */; };
-		1A5AC2BB1EED00AE00D87D59 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5AC2BA1EED00AE00D87D59 /* SearchViewModel.swift */; };
 		1A60D5C11EE86FE90014049C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A60D5C01EE86FE90014049C /* AppDelegate.swift */; };
 		1A60D5C31EE86FE90014049C /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A60D5C21EE86FE90014049C /* LaunchScreenViewController.swift */; };
 		1A60D5C61EE86FE90014049C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A60D5C41EE86FE90014049C /* Main.storyboard */; };
@@ -36,7 +36,6 @@
 		1A60D6081EE876A40014049C /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A60D6061EE876A40014049C /* BaseTableViewController.swift */; };
 		1A60D6171EE87A450014049C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A60D6151EE87A450014049C /* UIColorExtension.swift */; };
 		1A60D6181EE87A450014049C /* NSBundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A60D6161EE87A450014049C /* NSBundleExtension.swift */; };
-		1A6648C91EEBA2E1004E1AFE /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6648C81EEBA2E1004E1AFE /* Annotation.swift */; };
 		1AA86F6E1EED33D8001FA67B /* RealmObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA86F6D1EED33D8001FA67B /* RealmObjects.swift */; };
 		1AB36A651EEA77AF008B74E4 /* SearchListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB36A641EEA77AF008B74E4 /* SearchListCollectionViewCell.swift */; };
 		1AB36A671EEA77B9008B74E4 /* SearchListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AB36A661EEA77B9008B74E4 /* SearchListCollectionViewCell.xib */; };
@@ -71,13 +70,13 @@
 /* Begin PBXFileReference section */
 		01BE62F12415BB4A6999CD1D /* Pods_MapSearchDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapSearchDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C0973FC147D79826CADED3 /* Pods-MapSearchDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapSearchDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapSearchDemoUITests/Pods-MapSearchDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1A0B43CF1EED6C6D000866E6 /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		1A4987D71EEA71F500885809 /* BaseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		1A4987D91EEA71F500885809 /* BaseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseProtocol.swift; sourceTree = "<group>"; };
 		1A4987DB1EEA71F500885809 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1A4987DD1EEA71F500885809 /* BaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		1A4987E21EEA752500885809 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		1A5AC2B81EECF67300D87D59 /* MapObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapObjects.swift; sourceTree = "<group>"; };
-		1A5AC2BA1EED00AE00D87D59 /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		1A60D5BD1EE86FE90014049C /* MapSearchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapSearchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A60D5C01EE86FE90014049C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A60D5C21EE86FE90014049C /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
@@ -106,7 +105,6 @@
 		1A60D6061EE876A40014049C /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		1A60D6151EE87A450014049C /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		1A60D6161EE87A450014049C /* NSBundleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtension.swift; sourceTree = "<group>"; };
-		1A6648C81EEBA2E1004E1AFE /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		1AA86F6D1EED33D8001FA67B /* RealmObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmObjects.swift; sourceTree = "<group>"; };
 		1AB36A641EEA77AF008B74E4 /* SearchListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListCollectionViewCell.swift; sourceTree = "<group>"; };
 		1AB36A661EEA77B9008B74E4 /* SearchListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchListCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -153,6 +151,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0B43D11EED6CAF000866E6 /* ExptyState */ = {
+			isa = PBXGroup;
+			children = (
+				1AC2BE431EEC4DF50028FF87 /* EmptyView.swift */,
+				1AC2BE441EEC4DF50028FF87 /* EmptyView.xib */,
+			);
+			name = ExptyState;
+			sourceTree = "<group>";
+		};
+		1A0B43D21EED6CC9000866E6 /* MapObjects */ = {
+			isa = PBXGroup;
+			children = (
+				1A5AC2B81EECF67300D87D59 /* MapObjects.swift */,
+				1AA86F6D1EED33D8001FA67B /* RealmObjects.swift */,
+			);
+			name = MapObjects;
+			sourceTree = "<group>";
+		};
 		1A4987D51EEA71F500885809 /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,12 +319,10 @@
 		1AB36A621EEA7735008B74E4 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				1A6648C81EEBA2E1004E1AFE /* Annotation.swift */,
+				1A0B43D21EED6CC9000866E6 /* MapObjects */,
 				1A60D5F21EE873C30014049C /* MapViewController.swift */,
 				1A4987E21EEA752500885809 /* MapViewModel.swift */,
 				1AC2BE3D1EEBC94E0028FF87 /* MapModel.swift */,
-				1A5AC2B81EECF67300D87D59 /* MapObjects.swift */,
-				1AA86F6D1EED33D8001FA67B /* RealmObjects.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -316,11 +330,10 @@
 		1AB36A631EEA773D008B74E4 /* SearchList */ = {
 			isa = PBXGroup;
 			children = (
+				1A0B43D11EED6CAF000866E6 /* ExptyState */,
 				1A60D5F41EE873D10014049C /* SearchListViewController.swift */,
-				1A5AC2BA1EED00AE00D87D59 /* SearchViewModel.swift */,
+				1A0B43CF1EED6C6D000866E6 /* SearchViewModel.swift */,
 				1AC2BE411EEC4AA40028FF87 /* SearchSectionController.swift */,
-				1AC2BE431EEC4DF50028FF87 /* EmptyView.swift */,
-				1AC2BE441EEC4DF50028FF87 /* EmptyView.xib */,
 			);
 			name = SearchList;
 			sourceTree = "<group>";
@@ -651,11 +664,11 @@
 				1A60D6081EE876A40014049C /* BaseTableViewController.swift in Sources */,
 				1A60D6031EE876680014049C /* UIViewExtension.swift in Sources */,
 				1AC2BE3E1EEBC94E0028FF87 /* MapModel.swift in Sources */,
+				1A0B43D01EED6C6D000866E6 /* SearchViewModel.swift in Sources */,
 				1A60D5F11EE871BC0014049C /* MainMapViewController.swift in Sources */,
 				1A4987E01EEA71F500885809 /* BaseViewController.swift in Sources */,
 				1AB36A651EEA77AF008B74E4 /* SearchListCollectionViewCell.swift in Sources */,
 				1A60D5F71EE873FA0014049C /* HeaderView.swift in Sources */,
-				1A6648C91EEBA2E1004E1AFE /* Annotation.swift in Sources */,
 				1AC2BE451EEC4DF50028FF87 /* EmptyView.swift in Sources */,
 				1A60D5C31EE86FE90014049C /* LaunchScreenViewController.swift in Sources */,
 				1A60D6071EE876A40014049C /* BaseFunction.swift in Sources */,
@@ -663,7 +676,6 @@
 				1A60D6021EE876680014049C /* UITextFieldExtension.swift in Sources */,
 				1A4987E31EEA752500885809 /* MapViewModel.swift in Sources */,
 				1A60D6171EE87A450014049C /* UIColorExtension.swift in Sources */,
-				1A5AC2BB1EED00AE00D87D59 /* SearchViewModel.swift in Sources */,
 				1A60D6011EE876680014049C /* UIImageViewExtension.swift in Sources */,
 				1AC2BE421EEC4AA40028FF87 /* SearchSectionController.swift in Sources */,
 				1A60D5F51EE873D10014049C /* SearchListViewController.swift in Sources */,

@@ -12,30 +12,8 @@ import RealmSwift
 class RealmObjects: NSObject {
 
     let realm = try! Realm()
-
-//    func setMapObjects(id:Int, name:String,lat:Double,lng:Double,image:String,distance:Int){
-//        
-//        //        for title in defaultSubscribe {
-//        let subscribe = Subscribe()
-//        writeMapObject(id:id, name: name, lat: lat, lng: lng,image:image, distance: distance)
-//        //        }
-//    }
     
-    //    func setMapImageWithIndex(id:Int, image:Data){
-    //
-    //        //        for title in defaultSubscribe {
-    //        let subscribe = Subscribe()
-    //
-    //        let objectMap = realm.objects(Subscribe.self).filter("id =\(id)")
-    //
-    //        try? realm.write({
-    //            for channel in objectMap {
-    //                channel.image = image
-    //            }
-    //        })
-    //    }
-    
-    func writeMapObject(id:Int, name:String,lat:Double,lng:Double,image:String,distance:Int){
+    func writeMapObject(id:Int, name:String,lat:Double,lng:Double,image:String,distance:String){
         
         let subscribe = Subscribe()
         

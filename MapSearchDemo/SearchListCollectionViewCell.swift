@@ -14,7 +14,6 @@ import AlamofireImage
 class SearchListCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "SearchListCollectionViewCell"
-    var searchViewModel:SearchViewModel?
     
     @IBOutlet weak var imageCell: UIImageView!
     @IBOutlet weak var titleCell: UILabel!
@@ -22,8 +21,6 @@ class SearchListCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         self.frame = CGRect(x:0,y:0,width:UIScreen.main.bounds.width,height:self.frame.size.height)
-        let searchListViewController = SearchListViewController()
-        searchViewModel = SearchViewModel(delegate: searchListViewController)
     }
     
     func setCell(objects:Subscribe,index:Int){

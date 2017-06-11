@@ -8,7 +8,7 @@
 
 import UIKit
 import IGListKit
-import CoreLocation
+import MapKit
 
 class MapViewModel: BaseViewModel {
     
@@ -52,8 +52,8 @@ class MapViewModel: BaseViewModel {
         _ = APIRequest.request(withRouter: router, withHandler: getListMapHandler())
     }
     
-    func setImageURL(imageRef:String,gooleAPI:String) -> String {
-        return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=\(imageRef)&key=\(gooleAPI)"
+    func setImageURL(baseurl:String,imageRef:String,gooleAPI:String) -> String {
+        return "\(baseurl)place/photo?maxwidth=400&photoreference=\(imageRef)&key=\(gooleAPI)"
     }
     
     func getListMapHandler() -> APIRequest.completionHandler {
@@ -97,7 +97,7 @@ class MapViewModel: BaseViewModel {
         
         if let photosObject = objectIndex?["photos"] as? [[String:AnyObject]] {
             let referenceObject = photosObject[0]["photo_reference"]
-            return setImageURL(imageRef: referenceObject as? String ?? " ", gooleAPI: .GOOGLE_API)
+            return setImageURL(baseurl: .BASE_URL, imageRef: referenceObject as? String ?? " ", gooleAPI: .GOOGLE_API)
         }
         return " "
     }
@@ -107,20 +107,34 @@ class MapViewModel: BaseViewModel {
         return (userLocation?["lat"] ?? .defaultLat, userLocation?["lng"] ?? .defaultLng)
     }
     
-    func getCalculateDistance(lat :Double,lng :Double) -> Int{
-        
-        print("lat ",self.getUserLocation().0)
-        print("lng ",self.getUserLocation().1)
-        
-        let coordinateUserLocation = CLLocation(latitude: self.getUserLocation().0, longitude: self.getUserLocation().1)
-        let coordinateUserSelectedLocation = CLLocation(latitude: lat, longitude: lat)
-        
-        
-        let distanceInMeters = coordinateUserLocation.distance(from: coordinateUserSelectedLocation)
-        
-        return Int(distanceInMeters / 1000.0) //km
+    func getUserSelectedLocation() -> (Double,Double) {
+        let userLocation = UserDefaults.standard.object(forKey:.userSelectedLocation) as? [String:Double]
+        return (userLocation?["lat"] ?? .defaultLat, userLocation?["lng"] ?? .defaultLng)
     }
     
+    func getCalculateDistance(lat :Double,lng :Double) -> String{
+
+        let latStart = self.getUserSelectedLocation().0
+        let lngStart = self.getUserSelectedLocation().1
+        
+        let R:Double = 6371
+        let dLat = deg2rad(num: lat - latStart)
+        let dLon = deg2rad(num: lng - lngStart)
+        
+        let a = sin(dLat/2) * sin(dLat/2) +
+            cos(deg2rad(num: latStart)) * cos(deg2rad(num: lat)) *
+            sin(dLon/2) * sin(dLon/2)
+        
+        let c = 2 * atan2(sqrt(a),sqrt(1-a))
+        let distance = R * c
+        
+        return String(format: "%.2f km",distance)
+    }
+    
+    func deg2rad(num:Double) -> Double {
+       return num * .pi / 180
+    }
+  
     func getPlaceCount() -> Int{
         let result:Int = (getMarker()?.count ?? 1) - 1
         guard result > 0 else {
@@ -129,21 +143,7 @@ class MapViewModel: BaseViewModel {
         return result
     }
     
-    func setMapObjects(id:Int, name:String,lat:Double,lng:Double,image:String,distance:Int){
+    func setMapObjects(id:Int, name:String,lat:Double,lng:Double,image:String,distance:String){
         realmObjects.writeMapObject(id:id, name: name, lat: lat, lng: lng,image:image, distance: distance)
     }
-    
-    //    func setMapImageWithIndex(id:Int, image:Data){
-    //
-    //        //        for title in defaultSubscribe {
-    //        let subscribe = Subscribe()
-    //
-    //        let objectMap = realm.objects(Subscribe.self).filter("id =\(id)")
-    //
-    //        try? realm.write({
-    //            for channel in objectMap {
-    //                channel.image = image
-    //            }
-    //        })
-    //    }
 }

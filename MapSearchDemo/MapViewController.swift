@@ -84,6 +84,7 @@ class MapViewController: BaseViewController {
         let chooselat:Double = coor.latitude
         let chooselng:Double = coor.longitude
         
+        UserDefaults.standard.set(["lat":Double(chooselat),"lng":Double(chooselng)],forKey:.userSelectedLocation)
         mapViewModel.callService(location: "\((chooselat == -180.0) ? .defaultLat:chooselat),\((chooselng == -180.0) ? .defaultLng:chooselng)", radius: mapViewModel.getRadiusFromSliderValue(sliderValue: slider.value), key: .GOOGLE_API)
     }
     
