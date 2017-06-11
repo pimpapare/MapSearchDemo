@@ -27,13 +27,13 @@ class SearchSectionController: ListSectionController {
     
     override init() {
         super.init()
-        inset = UIEdgeInsets(top: 5, left: 10, bottom: 0, right: 10)
-        self.minimumInteritemSpacing = 5
-        self.minimumLineSpacing = 5
+        inset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        self.minimumInteritemSpacing = 0
+        self.minimumLineSpacing = 0
     }
     
     override func sizeForItem(at index: Int) -> CGSize {
-        return CGSize(width:UIScreen.main.bounds.width, height: 70)
+        return CGSize(width:UIScreen.main.bounds.width, height: 80)
     }
     
     override func cellForItem(at index: Int) -> UICollectionViewCell {

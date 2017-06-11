@@ -33,7 +33,6 @@
 		1A60D6021EE876680014049C /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A60D5FE1EE876680014049C /* UITextFieldExtension.swift */; };
 		1A60D6031EE876680014049C /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A60D5FF1EE876680014049C /* UIViewExtension.swift */; };
 		1A60D6071EE876A40014049C /* BaseFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A60D6051EE876A40014049C /* BaseFunction.swift */; };
-		1A60D6081EE876A40014049C /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A60D6061EE876A40014049C /* BaseTableViewController.swift */; };
 		1A60D6171EE87A450014049C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A60D6151EE87A450014049C /* UIColorExtension.swift */; };
 		1A60D6181EE87A450014049C /* NSBundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A60D6161EE87A450014049C /* NSBundleExtension.swift */; };
 		1AA86F6E1EED33D8001FA67B /* RealmObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA86F6D1EED33D8001FA67B /* RealmObjects.swift */; };
@@ -102,7 +101,6 @@
 		1A60D5FE1EE876680014049C /* UITextFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		1A60D5FF1EE876680014049C /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		1A60D6051EE876A40014049C /* BaseFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFunction.swift; sourceTree = "<group>"; };
-		1A60D6061EE876A40014049C /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		1A60D6151EE87A450014049C /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		1A60D6161EE87A450014049C /* NSBundleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtension.swift; sourceTree = "<group>"; };
 		1AA86F6D1EED33D8001FA67B /* RealmObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmObjects.swift; sourceTree = "<group>"; };
@@ -311,7 +309,6 @@
 				1A60D6041EE8766C0014049C /* Extension */,
 				1A60D5FA1EE875C50014049C /* Constant.swift */,
 				1A60D6051EE876A40014049C /* BaseFunction.swift */,
-				1A60D6061EE876A40014049C /* BaseTableViewController.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -661,7 +658,6 @@
 				1A60D5FB1EE875C50014049C /* Constant.swift in Sources */,
 				1A60D6001EE876680014049C /* UIButtonExtension.swift in Sources */,
 				1AC2BE3B1EEBC8590028FF87 /* Router.swift in Sources */,
-				1A60D6081EE876A40014049C /* BaseTableViewController.swift in Sources */,
 				1A60D6031EE876680014049C /* UIViewExtension.swift in Sources */,
 				1AC2BE3E1EEBC94E0028FF87 /* MapModel.swift in Sources */,
 				1A0B43D01EED6C6D000866E6 /* SearchViewModel.swift in Sources */,

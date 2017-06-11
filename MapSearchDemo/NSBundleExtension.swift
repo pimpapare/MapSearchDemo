@@ -14,5 +14,4 @@ public extension Bundle {
     public class func loadNib<NibName>(name: String) -> NibName? {
         return Bundle.main.loadNibNamed(name, owner: nil, options: nil)?[0] as? NibName
     }
-
 }

@@ -16,7 +16,7 @@ class LaunchScreenViewController: UIViewController {
     }
 
     func goToMapStoryBoard(){
-        self.performSegue(withIdentifier: "goToMapStoryBoard", sender: nil)
+        self.performSegue(withIdentifier: .segueGoToMapStoryBoard, sender: nil)
     }
 }
 

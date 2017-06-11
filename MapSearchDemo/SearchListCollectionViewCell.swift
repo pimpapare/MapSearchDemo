@@ -26,7 +26,7 @@ class SearchListCollectionViewCell: UICollectionViewCell {
     func setCell(objects:Subscribe,index:Int){
                 
         self.titleCell.text = objects.name
-        self.distanceCell.text = "\(objects.distance)"
+        self.distanceCell.text = "Distance: \(objects.distance)"
         self.imageCell.moa.url = objects.image  
     }
 }

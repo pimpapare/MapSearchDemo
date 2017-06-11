@@ -81,8 +81,8 @@ class MapViewController: BaseViewController {
         let point:CGPoint = (mapView?.center)!
         let coor:CLLocationCoordinate2D = (mapView?.projection.coordinate(for: point))!
         
-        let chooselat:Double = coor.latitude
-        let chooselng:Double = coor.longitude
+        let chooselat:Double = (coor.latitude == -180) ? .defaultLat : coor.latitude
+        let chooselng:Double = (coor.longitude == -180) ? .defaultLng : coor.longitude
         
         UserDefaults.standard.set(["lat":Double(chooselat),"lng":Double(chooselng)],forKey:.userSelectedLocation)
         mapViewModel.callService(location: "\((chooselat == -180.0) ? .defaultLat:chooselat),\((chooselng == -180.0) ? .defaultLng:chooselng)", radius: mapViewModel.getRadiusFromSliderValue(sliderValue: slider.value), key: .GOOGLE_API)
@@ -97,7 +97,7 @@ class MapViewController: BaseViewController {
     
     @IBAction func sliderHandlerChangeState(_ sender: Any) {
         
-        animationCircle(alpha: 0.3)
+        animationCircle(alpha: 0.2)
         txDistance.text = mapViewModel.distanceValueText(sliderValue: slider.value)
 
         mapView?.clear()
@@ -107,7 +107,6 @@ class MapViewController: BaseViewController {
     }
     
     @IBAction func sliderHandlerDoneWithSender(_ sender: Any) {
-        
         animationCircle(alpha: 0.1)
     }
     
@@ -136,18 +135,23 @@ class MapViewController: BaseViewController {
             var icon:UIImage = UIImage(named: mapViewModel.getArrayMarker())!.withRenderingMode(.alwaysOriginal)
             icon = self.resizeImage(image:icon,width: 35,height:35)
             marker.icon = icon
-                        
+            marker.title = name
+            marker.snippet = "Distance: \(distance)"
             marker.map = mapView
+
             mapViewModel.setMapObjects(id:i, name: name, lat: lat, lng: lng, image: image, distance: distance)
         }
     }
     
     override func onDataDidLoadErrorWithMessage(errorMessage: String) {
         
+        finishedLoading()
+        showAlertPopup(title: .errorTitle, message: .errorSubTitle, yes_text: .ok)
     }
     
     func finishedLoading(){
         hideLoading()
+        animationCircle(alpha: 0.0)
         btnSearch.loadingIndicator(show: false)
         btnSearch.isUserInteractionEnabled = true
         slider.isUserInteractionEnabled = true

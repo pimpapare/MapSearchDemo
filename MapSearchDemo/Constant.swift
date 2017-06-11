@@ -28,9 +28,10 @@ public extension Double {
 public extension String {
     
     public static let BASE_URL = "https://maps.googleapis.com/maps/api/"
-    
     public static let GOOGLE_KEY = "AIzaSyCwwzJ3TymPLZz7OW7LfU-pOSlYqpUvQFc"
     public static let GOOGLE_API = "AIzaSyCZ1BCe4Q7YL1nCa_ovtet4Bjn52tT20T8"
+
+    public static let segueGoToMapStoryBoard = "goToMapStoryBoard"
 
     public static let cell = "Cell"
     
@@ -47,6 +48,14 @@ public extension String {
     public static let defaultAnnotationID = "annotationID"
     public static let mainAnnotationID = "userAnnotationID"
 
+    //Error
+    public static let errorTitle = "Error"
+    public static let errorSubTitle = "Error. Please try again later."
+
+    public static let ok = "OK"
+    public static let unitDistance = "KM"
+
+    
     var countryName : String? {
         return (Locale.current as NSLocale).displayName(forKey: .countryCode, value: self)
     }

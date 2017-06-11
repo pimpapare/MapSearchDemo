@@ -21,27 +21,6 @@ class MapModel: BaseModel {
     }
 }
 
-class MapImageModel: BaseModel {
-    
-    var placesImage:[[UIImage]]?
-    var dicImage:UIImage?
-
-    required init(withImage image: UIImage) {
-        super.init(withDictionary: ["":"" as AnyObject])
-        self.dicImage = image
-        print("dict ",image)
-        
-//        self.dic = dict
-//        self.places = dict["results"] as? [[String : AnyObject]]
-    }
-    
-    public required init(withDictionary dict: [String : AnyObject]) {
-        fatalError("init(withDictionary:) has not been implemented")
-        super.init(withDictionary: dict)
-    }
-    
-}
-
 struct PlaceValue {
     
     var places:[[String:AnyObject]]?

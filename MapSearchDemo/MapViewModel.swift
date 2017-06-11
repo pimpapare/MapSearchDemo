@@ -31,9 +31,9 @@ class MapViewModel: BaseViewModel {
         
         let result = Int(sliderValue * 50)
         if result > 0{
-            return "\(result) KM"
+            return "\(result) " + .unitDistance
         }
-        return "1 KM"
+        return "1 " + .unitDistance
     }
     
     func getArrayMarker() -> String{
