@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.4.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
   - AlamofireObjectMapper (4.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
@@ -18,18 +20,26 @@ PODS:
   - IGListKit/Diffing (3.0.0)
   - moa (8.0.4)
   - ObjectMapper (2.2.7)
+  - Realm (2.8.0):
+    - Realm/Headers (= 2.8.0)
+  - Realm/Headers (2.8.0)
+  - RealmSwift (2.8.0):
+    - Realm (= 2.8.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
+  - AlamofireImage (~> 3.1)
   - AlamofireObjectMapper (~> 4.0)
   - EZSwiftExtensions
   - GoogleMaps
   - GooglePlaces
   - IGListKit (~> 3.0)
   - moa (~> 8.0)
+  - RealmSwift (~> 2.2)
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
   EZSwiftExtensions: ce22bf6fc5c6e7c883fec413300b006e123735d0
   GoogleMaps: 340a6a0bebd17c2db8abcd3921976c7c53c86cb8
@@ -37,7 +47,9 @@ SPEC CHECKSUMS:
   IGListKit: 9eab6856a15fa25ad72018ff9d9eb2178c240fff
   moa: 954e2ad962886626d02c3486dd3a7bb5f0052d14
   ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
+  Realm: 929243ad2b618b3232e70658bedc61110e7563f1
+  RealmSwift: 5b7079b891f2833d1849294161ba3e092bbda3f6
 
-PODFILE CHECKSUM: 95fa68a3d817ac3a34f6135033fd41bd2a4e43fa
+PODFILE CHECKSUM: 06c56dad35931461b34e0d15b61fcfce98818e1c
 
 COCOAPODS: 1.2.1

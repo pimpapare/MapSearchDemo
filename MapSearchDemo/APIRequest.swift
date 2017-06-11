@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 import AlamofireObjectMapper
 
 public class APIRequest {
@@ -27,6 +28,28 @@ public class APIRequest {
                 handler(nil,APIError.init(status_code: statusCode ?? 0))
             }
         })
+    }
+    
+    public static func requestImage(withRouter router: MapRouter, withHandler handler: @escaping completionHandler) -> Request?  {
+        return Alamofire.request(router).responseImage { response in
+
+            debugPrint(response)
+            debugPrint(response.result)
+            
+            let statusCode = response.response?.statusCode
+
+            switch response.result {
+            case .success( _):
+                
+                if let IMAGE = response.result.value {
+                print("image downloaded: \(IMAGE)")
+                handler(IMAGE, nil)
+                
+                }
+            case .failure( _):
+                handler(nil,APIError.init(status_code: statusCode ?? 0))
+            }
+        }
     }
     
     public static func ResponseHandler(JSON: [String : AnyObject]?, router: MapRouter, completionHandler: APIRequest.completionHandler) {

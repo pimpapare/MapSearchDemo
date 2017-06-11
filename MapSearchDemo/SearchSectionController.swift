@@ -16,15 +16,13 @@ enum LoadingType: String {
 
 class SearchSectionController: ListSectionController {
     
-    var object: MapModel?
-    lazy var mapViewModel:MapViewModel = MapViewModel(delegate: self as! BaseViewModelDelegate)
-
+    var objects: [Subscribe]?
+    var realmObject:RealmObjects? = RealmObjects()
+    
     override func numberOfItems() -> Int {
-        print(">> ",(object) ?? 0)
-        print(">> ",(object?.places?.count) ?? 0)
-        print(">> ",mapViewModel.getPlaceCount())
-
-        return mapViewModel.getPlaceCount() ?? 0
+        
+        objects = realmObject?.getMapObjects()
+        return objects?.count ?? 0
     }
     
     override init() {
@@ -35,19 +33,19 @@ class SearchSectionController: ListSectionController {
     }
     
     override func sizeForItem(at index: Int) -> CGSize {
-        return CGSize(width:UIScreen.main.bounds.width, height: 100)
+        return CGSize(width:UIScreen.main.bounds.width, height: 70)
     }
     
     override func cellForItem(at index: Int) -> UICollectionViewCell {
         
         let cell = collectionContext?.dequeueReusableCell(withNibName: SearchListCollectionViewCell.identifier, bundle: nil, for: self, at: index) as! SearchListCollectionViewCell
-        cell.setCell(obejcts: object,index: index)
+        cell.setCell(objects: objects![index] ,index: index)
         
         return cell
     }
     
     override func didUpdate(to object: Any) {
-        self.object = object as? MapModel
+        objects = realmObject?.getMapObjects()
     }
     
     override func didSelectItem(at index: Int) {

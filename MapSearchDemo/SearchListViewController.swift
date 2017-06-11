@@ -12,34 +12,37 @@ import IGListKit
 class SearchListViewController: BaseViewController {
     
     var observer : NSObjectProtocol!
-
+    
+    lazy var searchViewModel:SearchViewModel = SearchViewModel(delegate: self)
+    lazy var mapViewModel:MapViewModel! = MapViewModel(delegate: self)
+    
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
     }()
     
-    lazy var mapViewModel:MapViewModel = MapViewModel(delegate: self)
     //:MovieViewModelProtocol = MovieViewModel(delegate: self)
     
     var collectionView:UICollectionView?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserve()
-        setCollectionView()
     }
     
     func addObserve(){
         
         observer = NotificationCenter.default.addObserver(forName: .updateCell, object: nil, queue: OperationQueue.main) { n in
-            print("mapViewModel ",self.mapViewModel.getPlacesLocationLatLng(at: 0, key: "lat"))
-            self.refrashCollectionView()
+
+            self.setCollectionView()
+            self.adapter.performUpdates(animated: true, completion: nil)
+            //Call Image service self.searchViewModel.getMapObjects(objects:self.mapViewModel.getMapObjects())
         }
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        collectionView?.frame = CGRect(x:0,y: self.mapViewModel.sizeForTopOfCollectionView(),width: Constant.DEVICE_W, height: Constant.DEVICE_H)
+        collectionView?.frame = CGRect(x:0,y:0,width: Constant.DEVICE_W, height: Constant.DEVICE_H-120)
         guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
@@ -47,30 +50,20 @@ class SearchListViewController: BaseViewController {
         flowLayout.invalidateLayout()
     }
     
-    override func onDataDidLoad() {
+    func callServiceImageMapPlace(image:String){
         
-//        if self.mapViewModel.isPullToRefresh == true {
-//            self.mapViewModel.isPullToRefresh = false
-//            if #available(iOS 10.0, *) {
-//                self.adapter.collectionView?.refreshControl?.endRefreshing()
-//            }
-//        }
-        adapter.performUpdates(animated: true, completion: nil)
-    }
-    
-    override func onDataDidLoadErrorWithMessage(errorMessage: String) {
-        showAlertPopup(title: "Error", message: errorMessage, yes_text: "OK")
+        searchViewModel.callService(maxwidth: 400, photoreference: image, key: .GOOGLE_API)
     }
     
     override public func refrashCollectionView() {
         adapter.performUpdates(animated: true, completion: nil)
     }
-
+    
     func setCollectionView() {
         
-        collectionView = UICollectionView(frame:CGRect(x:0,y: self.mapViewModel.sizeForTopOfCollectionView(),width: Constant.DEVICE_W, height: Constant.DEVICE_H), collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView = UICollectionView(frame:CGRect(x:0,y:0,width: Constant.DEVICE_W, height: Constant.DEVICE_H-120), collectionViewLayout: UICollectionViewFlowLayout())
         collectionView?.backgroundColor = UIColor.white
-        view.addSubview(collectionView!)
+        self.view.addSubview(collectionView!)
         
         adapter.collectionView = collectionView
         
@@ -83,26 +76,27 @@ class SearchListViewController: BaseViewController {
     }
     
     func pullToRefresh() {
-        self.mapViewModel = MapViewModel(delegate: self)
-//        self.mapViewModel.isPullToRefresh = true
-//        self.mapViewModel.getMovieList()
+        //        self.mapViewModel = MapViewModel(delegate: self)
+        //        self.mapViewModel.isPullToRefresh = true
+        //        self.mapViewModel.getMovieList()
     }
 }
 
 extension SearchListViewController: ListAdapterDataSource {
     
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return self.mapViewModel.map
+        return self.searchViewModel.map
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        switch object {
-        case is MapModel:
-            return SearchSectionController()
-//        default: return ListSectionController()
-        default: return ListSectionController()
-
-        }
+        //        switch object {
+        //        case is MapModel:
+        //            return SearchSectionController()
+        ////        default: return ListSectionController()
+        //        default: return ListSectionController()
+        //
+        //        }
+        return SearchSectionController()
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
@@ -112,18 +106,18 @@ extension SearchListViewController: ListAdapterDataSource {
 }
 
 extension SearchListViewController: UIScrollViewDelegate{
-//, EmptyViewDelegate {
+    //, EmptyViewDelegate {
     
     func didReload() {
         adapter.performUpdates(animated: true, completion: nil)
     }
     
-//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//        let distance = scrollView.contentSize.height - (targetContentOffset.pointee.y + scrollView.bounds.height)
-//        let nextMovieAvailable = (self.movieViewModel.movie as? [MapModel])?.last?.nextMovieAvailable
-//        if nextMovieAvailable == true && distance < 200 {
-//            self.mapViewModel.map.append(LoadingType.loadmore.rawValue as ListDiffable)
-//            adapter.performUpdates(animated: true, completion: nil)
-//        }
-//    }
+    //    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    //        let distance = scrollView.contentSize.height - (targetContentOffset.pointee.y + scrollView.bounds.height)
+    //        let nextMovieAvailable = (self.movieViewModel.movie as? [MapModel])?.last?.nextMovieAvailable
+    //        if nextMovieAvailable == true && distance < 200 {
+    //            self.mapViewModel.map.append(LoadingType.loadmore.rawValue as ListDiffable)
+    //            adapter.performUpdates(animated: true, completion: nil)
+    //        }
+    //    }
 }

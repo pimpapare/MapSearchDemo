@@ -22,6 +22,7 @@ public protocol MapRouter: URLRequestConvertible {
 public enum Router: MapRouter {
     
     case getPlaceList(location:String,radius:Int,key:String)
+    case getPhotoList(maxwidth:Int,photoreference:String,key:String)
 }
 
 extension Router {
@@ -35,6 +36,8 @@ extension Router {
         switch self {
         case .getPlaceList:
             return .get
+        case .getPhotoList:
+            return .get
         }
     }
     
@@ -43,6 +46,8 @@ extension Router {
         switch self {
         case .getPlaceList:
             return "place/nearbysearch/json"
+        case .getPhotoList:
+            return "place/photo"
         }
     }
     
@@ -54,12 +59,19 @@ extension Router {
                           "radius": radius,
                           "key":key] as [String : Any]
             return params as [String : AnyObject]
+        case .getPhotoList(let maxwidth,let photoreference,let key):
+            let params = ["maxwidth": maxwidth,
+                          "photoreference": photoreference,
+                          "key":key] as [String : Any]
+            return params as [String : AnyObject]
         }
     }
     
     public var headers: [String: String]? {
         switch self {
         case .getPlaceList:
+            return nil
+        case .getPhotoList:
             return nil
         }
     }
@@ -75,6 +87,8 @@ extension Router {
         switch self {
         case .getPlaceList:
             return MapModel.self
+        case .getPhotoList:
+            return MapImageModel.self
         }
     }
     
@@ -83,6 +97,9 @@ extension Router {
         urlRequest.httpMethod = method.rawValue
         switch self {
         case .getPlaceList:
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            return urlRequest
+        case .getPhotoList:
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             return urlRequest
         }

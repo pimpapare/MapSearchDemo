@@ -82,7 +82,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="9a6-Rb-ITc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dH2-db-7l3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dH2-db-7l3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -288,19 +288,7 @@
                     <view key="view" contentMode="scaleToFill" id="VGd-yV-ekf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="547"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iQ9-bp-lQB">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="547"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="iQ9-bp-lQB" secondAttribute="trailing" id="9iO-Nh-f2p"/>
-                            <constraint firstItem="iQ9-bp-lQB" firstAttribute="top" secondItem="VGd-yV-ekf" secondAttribute="top" id="PHT-LB-0R5"/>
-                            <constraint firstAttribute="bottom" secondItem="iQ9-bp-lQB" secondAttribute="bottom" id="QPb-XD-Lne"/>
-                            <constraint firstItem="iQ9-bp-lQB" firstAttribute="leading" secondItem="VGd-yV-ekf" secondAttribute="leading" id="iZ4-A3-qBD"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r4z-c3-YsX" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -46,7 +46,7 @@ class MapViewController: BaseViewController {
     func setInitailUI(){
         
         addGoogleMapView(zoom: zoomMap)
-                
+        
         btnSearch.titleLabel?.text = .txBtnSearch
         txSlider.text = .txTitleSlider
         
@@ -58,9 +58,7 @@ class MapViewController: BaseViewController {
     
     func addGoogleMapView(zoom:Float){
         
-        let userLocation = UserDefaults.standard.object(forKey:.userLocation) as? [String:Double]
-        
-        let camera = GMSCameraPosition.camera(withLatitude: userLocation?["lat"] ?? 18.0, longitude: userLocation?["lng"] ?? 98.0, zoom: zoom)
+        let camera = GMSCameraPosition.camera(withLatitude: mapViewModel.getUserLocation().0, longitude: mapViewModel.getUserLocation().1, zoom: zoom)
         mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: Constant.DEVICE_W, height: Constant.DEVICE_H-110), camera:camera)
         
         self.view.addSubview(mapView!)
@@ -76,9 +74,10 @@ class MapViewController: BaseViewController {
     func callServiceMapPlace(){
         
         showLoading()
+        btnSearch.loadingIndicator(show: true)
         btnSearch.isUserInteractionEnabled = false
         slider.isUserInteractionEnabled = false
-
+        
         let point:CGPoint = (mapView?.center)!
         let coor:CLLocationCoordinate2D = (mapView?.projection.coordinate(for: point))!
         
@@ -112,30 +111,41 @@ class MapViewController: BaseViewController {
     
     override func onDataDidLoad() {
         
-        hideLoading()
-        btnSearch.isUserInteractionEnabled = true
-        slider.isUserInteractionEnabled = true
-
+        finishedLoading()
+        
         mapView?.clear()
         addGoogleMapView(zoom: zoomMap)
         
         let count = mapViewModel.getPlaceCount()
         
+        mapViewModel.realmObjects.removeMapObjects()
+        
         for i in 0...count {
             
+            let lat = mapViewModel.getPlacesLocationLatLng(at: i, key: "lat")
+            let lng = mapViewModel.getPlacesLocationLatLng(at: i, key: "lng")
+            let name = mapViewModel.getPlacesObjects(at: i, key: "name")
+            let image = mapViewModel.getPlacesImage(at: i)
+            let distance = mapViewModel.getCalculateDistance(lat: lat, lng: lng)
+            
             let marker = GMSMarker()
-            marker.position = CLLocationCoordinate2D(latitude: CLLocationDegrees(mapViewModel.getPlacesLocationLatLng(at: i, key: "lat")), longitude: mapViewModel.getPlacesLocationLatLng(at: i, key: "lng"))
+            marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lng)
             var icon:UIImage = UIImage(named: "ic_place")!.withRenderingMode(.alwaysOriginal)
             icon = self.resizeImage(image:icon,width: 35,height:35)
             marker.icon = icon
             
             marker.map = mapView
+            mapViewModel.setMapObjects(id:i, name: name, lat: lat, lng: lng, image: image, distance: distance)
         }
     }
     
     override func onDataDidLoadErrorWithMessage(errorMessage: String) {
         
+    }
+    
+    func finishedLoading(){
         hideLoading()
+        btnSearch.loadingIndicator(show: false)
         btnSearch.isUserInteractionEnabled = true
         slider.isUserInteractionEnabled = true
     }

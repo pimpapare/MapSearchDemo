@@ -40,14 +40,14 @@ extension UIButton{
     func loadingIndicator(show: Bool) {
         let tag = 9876
         if show {
-            self.alpha = 0.6
+            self.alpha = 0.9
             self.isUserInteractionEnabled = false
             self.tintColor = UIColor.init(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.6)
             //setTitleColor(UIColorFromRGB("F21B3F"), forState: .Normal)
             let indicator = UIActivityIndicatorView()
             let buttonHeight = self.bounds.size.height
             let buttonWidth = self.bounds.size.width
-            indicator.center = CGPoint(x:buttonWidth - 30, y:buttonHeight/2)
+            indicator.center = CGPoint(x:buttonWidth/2, y:buttonHeight/2)
             indicator.tag = tag
             self.addSubview(indicator)
             indicator.startAnimating()

@@ -18,15 +18,18 @@ class SearchListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var distanceCell: UILabel!
     
     override func awakeFromNib() {
-        self.frame = CGRect(x:0,y:0,width:UIScreen.main.bounds.width,height:UIScreen.main.bounds.height)
+        self.frame = CGRect(x:0,y:0,width:UIScreen.main.bounds.width,height:self.frame.size.height)
     }
     
-    func setCell(obejcts:MapModel?,index:Int){
-        
-        print("obejcts ",obejcts)
-        
-//        self.titleCell.text = obejcts?.getPlacesObjects(at: index, key: "english")
-//        self.distanceCell.text = obejcts?.getPlacesObjects(at: index, key: "thai")
-//        self.imageCell.moa.url = "http://www.discoverythailand.com/Images/Place/ID_976_Large.jpg"
+    func setCell(objects:Subscribe,index:Int){
+                
+        self.titleCell.text = objects.name
+//            //obejcts?.getPlacesObjects(at: index, key: "english")
+        self.distanceCell.text = "\(objects.distance)"
+            //obejcts?.getPlacesObjects(at: index, key: "thai")
+        self.imageCell.moa.url = "http://www.discoverythailand.com/Images/Place/ID_976_Large.jpg"
+  
+        //Call Image service self.searchViewModel.getMapObjects(objects:self.mapViewModel.getMapObjects())
+
     }
 }

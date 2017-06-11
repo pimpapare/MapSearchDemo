@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AlamofireImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>AlamofireObjectMapper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -44,6 +49,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RealmSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>moa.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -58,11 +73,6 @@
 			<true/>
 		</dict>
 		<key>0FB408FDD1724548E283FB7940306AF3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1C76E05CC853C3591A0CAD224FFDF052</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,6 +92,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>71417ED650805775C4985E7AF82FFFAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
@@ -92,7 +107,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A37439CFB522BBA1AF2271E20F5A26A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7CCB2273ABD9F59F848765A15064F65</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EC38D4603A646857808EB312909AD7CA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

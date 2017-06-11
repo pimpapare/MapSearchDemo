@@ -51,6 +51,7 @@ class BaseViewController: UIViewController {
 }
 
 extension BaseViewController: BaseViewModelDelegate {
+    
     public func showLoading() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
@@ -63,6 +64,10 @@ extension BaseViewController: BaseViewModelDelegate {
         
     }
     
+    func onImageDataDidLoad() {
+
+    }
+
     public func onDataDidLoadErrorWithMessage(errorMessage: String) {
         
     }

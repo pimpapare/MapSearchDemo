@@ -8,20 +8,13 @@
 
 import UIKit
 import IGListKit
+import CoreLocation
 
 class MapViewModel: BaseViewModel {
     
     var map = [LoadingType.refresh.rawValue as ListDiffable]
-   
     var dicPlaces:[String:AnyObject]?
-    
-    func sizeForTopOfCollectionView() -> CGFloat{
-        
-        guard UIDevice.current.orientation.isLandscape else {
-            return 20
-        }
-        return 0
-    }
+    var realmObjects:RealmObjects = RealmObjects()
     
     func zoomCamera(sliderValue:Float) -> Float {
 
@@ -88,6 +81,33 @@ class MapViewModel: BaseViewModel {
         return locationObject[key] as! Double
     }
     
+    func getPlacesImage(at index:Int) -> String{
+        
+        let objectIndex = getMarker()?[index]
+        let photosObject = objectIndex?["photos"] as! [[String:AnyObject]]
+        let referenceObject = photosObject[0]["photo_reference"]
+        return referenceObject as? String ?? " "
+    }
+    
+    func getUserLocation() -> (Double,Double) {
+        let userLocation = UserDefaults.standard.object(forKey:.userLocation) as? [String:Double]
+        return (userLocation?["lat"] ?? 18.0, userLocation?["lng"] ?? 98.0)
+    }
+    
+    func getCalculateDistance(lat :Double,lng :Double) -> Int{
+
+        print("lat ",self.getUserLocation().0)
+        print("lng ",self.getUserLocation().1)
+
+        let coordinateUserLocation = CLLocation(latitude: self.getUserLocation().0, longitude: self.getUserLocation().1)
+        let coordinateUserSelectedLocation = CLLocation(latitude: lat, longitude: lat)
+    
+        
+        let distanceInMeters = coordinateUserLocation.distance(from: coordinateUserSelectedLocation)
+    
+        return Int(distanceInMeters / 1000.0) //km
+    }
+
     func getPlaceCount() -> Int{
         let result:Int = (getMarker()?.count ?? 1) - 1
         guard result > 0 else {
@@ -95,4 +115,25 @@ class MapViewModel: BaseViewModel {
         }
         return result
     }
-}
+    
+    func setMapObjects(id:Int, name:String,lat:Double,lng:Double,image:String,distance:Int){
+        
+//        for title in defaultSubscribe {
+        realmObjects.writeMapObject(id:id, name: name, lat: lat, lng: lng,image:image, distance: distance)
+//        }
+    }
+    
+//    func setMapImageWithIndex(id:Int, image:Data){
+//        
+//        //        for title in defaultSubscribe {
+//        let subscribe = Subscribe()
+//
+//        let objectMap = realm.objects(Subscribe.self).filter("id =\(id)")
+//     
+//        try? realm.write({
+//            for channel in objectMap {
+//                channel.image = image
+//            }
+//        })
+//    }
+ }

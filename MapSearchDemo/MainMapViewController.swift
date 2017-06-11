@@ -63,6 +63,7 @@ class MainMapViewController: BaseViewController,CLLocationManagerDelegate {
     }
     
     func openSearch(_ sender: Any) {
+        NotificationCenter.default.post(name: .updateCell, object: nil)
         setUIMenu(viewMap: 0, viewSearch: 1)
     }
     
