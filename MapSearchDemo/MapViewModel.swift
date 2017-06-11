@@ -15,6 +15,14 @@ class MapViewModel: BaseViewModel {
    
     var dicPlaces:[String:AnyObject]?
     
+    func sizeForTopOfCollectionView() -> CGFloat{
+        
+        guard UIDevice.current.orientation.isLandscape else {
+            return 20
+        }
+        return 0
+    }
+    
     func zoomCamera(sliderValue:Float) -> Float {
 
         let result = 14 - 0.55 * Float(Int(sliderValue * 10))
@@ -63,6 +71,7 @@ class MapViewModel: BaseViewModel {
     func getMarker() -> [[String:AnyObject]]?{
         
         let object: MapModel = MapModel(withDictionary: dicPlaces!)
+        print("object ",object.places)
         return object.places
     }
     

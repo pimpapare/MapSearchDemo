@@ -1,10 +1,11 @@
 //
-//  HistorySectionController.swift
-//  NongBeer
+//  SearchSectionController.swift
+//  MapSearchDemo
 //
-//  Created by Thongpak on 4/10/2560 BE.
-//  Copyright © 2560 Thongpak. All rights reserved.
+//  Created by pimpaporn chaichompoo on 6/9/17.
+//  Copyright © 2017 Pimpaporn Chaichompoo. All rights reserved.
 //
+
 
 import UIKit
 import IGListKit
@@ -13,12 +14,17 @@ enum LoadingType: String {
     case refresh, loadmore
 }
 
-class MapSectionController: ListSectionController {
+class SearchSectionController: ListSectionController {
     
     var object: MapModel?
-    
+    lazy var mapViewModel:MapViewModel = MapViewModel(delegate: self as! BaseViewModelDelegate)
+
     override func numberOfItems() -> Int {
-        return (object?.places?.count) ?? 0
+        print(">> ",(object) ?? 0)
+        print(">> ",(object?.places?.count) ?? 0)
+        print(">> ",mapViewModel.getPlaceCount())
+
+        return mapViewModel.getPlaceCount() ?? 0
     }
     
     override init() {

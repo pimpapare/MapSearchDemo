@@ -12,6 +12,7 @@ target 'MapSearchDemo' do
     pod 'AlamofireObjectMapper', '~> 4.0'
     pod 'IGListKit', '~> 3.0'
     pod 'moa', '~> 8.0'
+    pod 'EZSwiftExtensions'
 
     target 'MapSearchDemoTests' do
         inherit! :search_paths

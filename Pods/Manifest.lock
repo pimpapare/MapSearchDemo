@@ -3,6 +3,7 @@ PODS:
   - AlamofireObjectMapper (4.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
+  - EZSwiftExtensions (1.9)
   - GoogleMaps (2.3.0):
     - GoogleMaps/Maps (= 2.3.0)
   - GoogleMaps/Base (2.3.0)
@@ -21,6 +22,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.3)
   - AlamofireObjectMapper (~> 4.0)
+  - EZSwiftExtensions
   - GoogleMaps
   - GooglePlaces
   - IGListKit (~> 3.0)
@@ -29,12 +31,13 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
+  EZSwiftExtensions: ce22bf6fc5c6e7c883fec413300b006e123735d0
   GoogleMaps: 340a6a0bebd17c2db8abcd3921976c7c53c86cb8
   GooglePlaces: 74d322c74184ea4576184089b496d291cf0dcd38
   IGListKit: 9eab6856a15fa25ad72018ff9d9eb2178c240fff
   moa: 954e2ad962886626d02c3486dd3a7bb5f0052d14
   ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
 
-PODFILE CHECKSUM: fbf10eb41b37b69053f424578fff9584898c7677
+PODFILE CHECKSUM: 95fa68a3d817ac3a34f6135033fd41bd2a4e43fa
 
 COCOAPODS: 1.2.1

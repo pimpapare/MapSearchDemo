@@ -1,9 +1,9 @@
 //
 //  BaseViewController.swift
-//  NongBeer
+//  MapSearchDemo
 //
-//  Created by Thongpak on 4/6/2560 BE.
-//  Copyright © 2560 Thongpak. All rights reserved.
+//  Created by pimpaporn chaichompoo on 6/8/17.
+//  Copyright © 2017 Pimpaporn Chaichompoo. All rights reserved.
 //
 
 import UIKit
@@ -50,7 +50,6 @@ class BaseViewController: UIViewController {
     }
 }
 
-
 extension BaseViewController: BaseViewModelDelegate {
     public func showLoading() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -65,6 +64,10 @@ extension BaseViewController: BaseViewModelDelegate {
     }
     
     public func onDataDidLoadErrorWithMessage(errorMessage: String) {
+        
+    }
+
+    public func refrashCollectionView() {
         
     }
 }

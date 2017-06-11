@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>EZSwiftExtensions.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>IGListKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,17 +52,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>09364D07138794106087C58670C7492D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>0FB408FDD1724548E283FB7940306AF3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2F5622F3B18DF497981AB58C6D1FC72F</key>
+		<key>1C76E05CC853C3591A0CAD224FFDF052</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4F69C4463A1A134205F27FB32868C981</key>
+		<key>2F5622F3B18DF497981AB58C6D1FC72F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

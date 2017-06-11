@@ -35,6 +35,7 @@ class MapViewController: BaseViewController {
         super.viewDidLoad()
         setInitailUI()
         setInitialObjects()
+        callServiceMapPlace()
     }
     
     func setInitialObjects(){
@@ -69,15 +70,15 @@ class MapViewController: BaseViewController {
     }
     
     @IBAction func btnSearchPressed(_ sender: Any) {
-        
-        showLoading()
-        btnSearch.isUserInteractionEnabled = false
-        slider.isUserInteractionEnabled = false
         callServiceMapPlace()
     }
     
     func callServiceMapPlace(){
         
+        showLoading()
+        btnSearch.isUserInteractionEnabled = false
+        slider.isUserInteractionEnabled = false
+
         let point:CGPoint = (mapView?.center)!
         let coor:CLLocationCoordinate2D = (mapView?.projection.coordinate(for: point))!
         
@@ -85,14 +86,6 @@ class MapViewController: BaseViewController {
         let chooselng:Double = coor.longitude
         
         mapViewModel.callService(location: "\((chooselat == -180.0) ? 18.0:chooselat),\((chooselng == -180.0) ? 98.0:chooselng)", radius: mapViewModel.getRadiusFromSliderValue(sliderValue: slider.value), key: .GOOGLE_API)
-    }
-    
-    func animationFooter(constant:CGFloat){
-        
-        UIView.animate(withDuration: 1, delay: 1, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
-            self.bottomViewSlider.constant = constant
-            self.view.layoutIfNeeded()
-        })
     }
     
     func animationCircle(alpha:CGFloat){

@@ -15,6 +15,10 @@ class Constant {
     
 }
 
+public extension NSNotification.Name {
+    public static let updateCell:NSNotification.Name = NSNotification.Name(rawValue: "updateCell")
+}
+
 public extension String {
     
     public static let GOOGLE_KEY = "AIzaSyCwwzJ3TymPLZz7OW7LfU-pOSlYqpUvQFc"
