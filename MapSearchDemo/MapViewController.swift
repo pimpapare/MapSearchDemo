@@ -143,7 +143,7 @@ class MapViewController: BaseViewController,GMSMapViewDelegate {
             icon = self.resizeImage(image:icon,width: 35,height:35)
             marker.icon = icon
             marker.title = name
-            marker.snippet = .distanceText + "\(distance)"
+            marker.snippet = .distanceText + " \(distance)"
             marker.map = mapView
 
             mapViewModel.setMapObjects(id:i, name: name, lat: lat, lng: lng, image: image, distance: distance)
@@ -157,7 +157,9 @@ class MapViewController: BaseViewController,GMSMapViewDelegate {
     }
     
     func finishedLoading(){
+        
         hideLoading()
+        
         txLocation.isHidden = true
         animationCircle(alpha: 0.0)
         btnSearch.loadingIndicator(show: false)

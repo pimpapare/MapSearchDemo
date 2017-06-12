@@ -39,7 +39,7 @@ class MapViewModel: BaseViewModel {
     }
     
     func validateCenterMarker(lat:Double,lng:Double) -> [Double]{
-    
+        
         if lat <= 0 || lng <= 0 {
             return [.defaultLat,.defaultLng]
         }else{

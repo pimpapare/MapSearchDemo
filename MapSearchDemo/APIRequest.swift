@@ -36,7 +36,7 @@ public class APIRequest {
             let instance: BaseModel = router.responseClass.init(withDictionary: JSON)
             completionHandler(instance, nil)
         }else{
-            completionHandler(nil,nil)// already debug error
+            completionHandler(nil,nil)
         }
     }
 }
