@@ -100,7 +100,7 @@
 		1A60D5FD1EE876680014049C /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		1A60D5FE1EE876680014049C /* UITextFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		1A60D5FF1EE876680014049C /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		1A60D6051EE876A40014049C /* BaseFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFunction.swift; sourceTree = "<group>"; };
+		1A60D6051EE876A40014049C /* BaseFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseFunction.swift; path = ../BaseFunction.swift; sourceTree = "<group>"; };
 		1A60D6151EE87A450014049C /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		1A60D6161EE87A450014049C /* NSBundleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtension.swift; sourceTree = "<group>"; };
 		1AA86F6D1EED33D8001FA67B /* RealmObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmObjects.swift; sourceTree = "<group>"; };
@@ -152,8 +152,8 @@
 		1A0B43D11EED6CAF000866E6 /* ExptyState */ = {
 			isa = PBXGroup;
 			children = (
-				1AC2BE431EEC4DF50028FF87 /* EmptyView.swift */,
 				1AC2BE441EEC4DF50028FF87 /* EmptyView.xib */,
+				1AC2BE431EEC4DF50028FF87 /* EmptyView.swift */,
 			);
 			name = ExptyState;
 			sourceTree = "<group>";
@@ -170,6 +170,7 @@
 		1A4987D51EEA71F500885809 /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
+				1A60D6051EE876A40014049C /* BaseFunction.swift */,
 				1A4987D61EEA71F500885809 /* Model */,
 				1A4987D81EEA71F500885809 /* Protocol */,
 				1A4987DA1EEA71F500885809 /* ViewController */,
@@ -237,13 +238,13 @@
 			children = (
 				1A60D5C01EE86FE90014049C /* AppDelegate.swift */,
 				1A60D5C21EE86FE90014049C /* LaunchScreenViewController.swift */,
+				1A60D5C91EE86FE90014049C /* LaunchScreen.storyboard */,
 				1A60D5C41EE86FE90014049C /* Main.storyboard */,
+				1A60D5C71EE86FE90014049C /* Assets.xcassets */,
 				1AC2BE3C1EEBC8900028FF87 /* APIRequest */,
 				1A60D60B1EE876FE0014049C /* Helper */,
 				1A60D6091EE876E70014049C /* View */,
 				1A60D60A1EE876F20014049C /* Menu */,
-				1A60D5C71EE86FE90014049C /* Assets.xcassets */,
-				1A60D5C91EE86FE90014049C /* LaunchScreen.storyboard */,
 				1A60D5CC1EE86FE90014049C /* Info.plist */,
 			);
 			path = MapSearchDemo;
@@ -283,10 +284,9 @@
 		1A60D6091EE876E70014049C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1A60D5F61EE873FA0014049C /* HeaderView.swift */,
+				1A703B911EEE450000015F0D /* Cell */,
 				1A60D5F81EE874090014049C /* HeaderView.xib */,
-				1AB36A661EEA77B9008B74E4 /* SearchListCollectionViewCell.xib */,
-				1AB36A641EEA77AF008B74E4 /* SearchListCollectionViewCell.swift */,
+				1A60D5F61EE873FA0014049C /* HeaderView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -295,8 +295,8 @@
 			isa = PBXGroup;
 			children = (
 				1A60D5EE1EE870F60014049C /* Map.storyboard */,
-				1A4987D51EEA71F500885809 /* BaseClass */,
 				1A60D5F01EE871BC0014049C /* MainMapViewController.swift */,
+				1A4987D51EEA71F500885809 /* BaseClass */,
 				1AB36A621EEA7735008B74E4 /* Map */,
 				1AB36A631EEA773D008B74E4 /* SearchList */,
 			);
@@ -308,9 +308,17 @@
 			children = (
 				1A60D6041EE8766C0014049C /* Extension */,
 				1A60D5FA1EE875C50014049C /* Constant.swift */,
-				1A60D6051EE876A40014049C /* BaseFunction.swift */,
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		1A703B911EEE450000015F0D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1AB36A661EEA77B9008B74E4 /* SearchListCollectionViewCell.xib */,
+				1AB36A641EEA77AF008B74E4 /* SearchListCollectionViewCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		1AB36A621EEA7735008B74E4 /* Map */ = {

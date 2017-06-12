@@ -54,7 +54,7 @@ public extension String {
 
     public static let ok = "OK"
     public static let unitDistance = "KM"
-
+    public static let distanceText = "Distance"
     
     var countryName : String? {
         return (Locale.current as NSLocale).displayName(forKey: .countryCode, value: self)

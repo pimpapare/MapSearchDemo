@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class MapViewController: BaseViewController {
+class MapViewController: BaseViewController,GMSMapViewDelegate {
     
     @IBOutlet weak var txSlider: UILabel!
     @IBOutlet weak var slider: UISlider!
@@ -42,11 +42,12 @@ class MapViewController: BaseViewController {
     func setInitialObjects(){
         
         mapView = GMSMapView()
+        mapView.delegate = self
     }
     
     func setInitailUI(){
         
-        addGoogleMapView(zoom: zoomMap)
+        addGoogleMapView(zoom: zoomMap,userLocation: true)
         
         btnSearch.titleLabel?.text = .txBtnSearch
         txSlider.text = .txTitleSlider
@@ -57,15 +58,15 @@ class MapViewController: BaseViewController {
         btnSearch.backgroundColor = UIColor.colorRed
     }
     
-    func addGoogleMapView(zoom:Float){
+    func addGoogleMapView(zoom:Float,userLocation:Bool){
         
-        let camera = GMSCameraPosition.camera(withLatitude: mapViewModel.getUserLocation().0, longitude: mapViewModel.getUserLocation().1, zoom: zoom)
+        let camera = GMSCameraPosition.camera(withLatitude:mapViewModel.getZoomLocation(userLocation: userLocation)[0], longitude:mapViewModel.getZoomLocation(userLocation: userLocation)[1], zoom: zoom)
         mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: Constant.DEVICE_W, height: Constant.DEVICE_H-110), camera:camera)
         
-        self.view.addSubview(mapView!)
-        self.view.insertSubview(mapView!, belowSubview: vFooter)
-        self.view.insertSubview(mapView!, belowSubview: vPin)
-        self.view.insertSubview(mapView!, belowSubview: vCircle)
+        self.view.addSubview(mapView)
+        self.view.insertSubview(mapView, belowSubview: vFooter)
+        self.view.insertSubview(mapView, belowSubview: vPin)
+        self.view.insertSubview(mapView, belowSubview: vCircle)
     }
     
     @IBAction func btnSearchPressed(_ sender: Any) {
@@ -79,11 +80,8 @@ class MapViewController: BaseViewController {
         btnSearch.isUserInteractionEnabled = false
         slider.isUserInteractionEnabled = false
         
-        let lat = centerMarkerLocation().0
-        let lng = centerMarkerLocation().1
-        
-        UserDefaults.standard.set(["lat":Double(lat),"lng":Double(lng)],forKey:.userSelectedLocation)
-        mapViewModel.callService(location: "\((lat == -180.0) ? .defaultLat:lat),\((lng == -180.0) ? .defaultLng:lng)", radius: mapViewModel.getRadiusFromSliderValue(sliderValue: slider.value), key: .GOOGLE_API)
+        UserDefaults.standard.set(["lat":centerMarkerLocation().0,"lng":centerMarkerLocation().1],forKey:.userSelectedLocation)
+        mapViewModel.callService(location: "\(centerMarkerLocation().0),\(centerMarkerLocation().1)", radius: mapViewModel.getRadiusFromSliderValue(sliderValue: slider.value), key: .GOOGLE_API)
     }
     
     func animationCircle(alpha:CGFloat){
@@ -95,25 +93,24 @@ class MapViewController: BaseViewController {
     
     func centerMarkerLocation() -> (Double,Double) {
         
-        let point:CGPoint = (mapView?.center)!
+        let point:CGPoint = vPin.center
         let coor:CLLocationCoordinate2D = (mapView?.projection.coordinate(for: point))!
         
-        let chooselat:Double = (coor.latitude == -180) ? .defaultLat : coor.latitude
-        let chooselng:Double = (coor.longitude == -180) ? .defaultLng : coor.longitude
+        let location = mapViewModel.validateCenterMarker(lat: coor.latitude, lng: coor.longitude)
 
-        return (chooselat,chooselng)
+        return (location[0],location[1])
     }
-
+    
     @IBAction func sliderHandlerChangeState(_ sender: Any) {
         
         animationCircle(alpha: 0.2)
         txLocation.isHidden = false
+        txLocation.text = String(format: "lat: %4f, lng %4f",centerMarkerLocation().0,centerMarkerLocation().1)
         txDistance.text = mapViewModel.distanceValueText(sliderValue: slider.value)
-        txLocation.text = "lat: \(centerMarkerLocation().0),\n lng: \(centerMarkerLocation().1)"
         mapView?.clear()
         mapView.removeFromSuperview()
         zoomMap = mapViewModel.zoomCamera(sliderValue: slider.value)
-        addGoogleMapView(zoom: zoomMap)
+        addGoogleMapView(zoom: zoomMap,userLocation: false)
     }
     
     @IBAction func sliderHandlerDoneWithSender(_ sender: Any) {
@@ -125,7 +122,7 @@ class MapViewController: BaseViewController {
         finishedLoading()
         
         mapView?.clear()
-        addGoogleMapView(zoom: zoomMap)
+        addGoogleMapView(zoom: zoomMap,userLocation: false)
         
         let count = mapViewModel.getPlaceCount()
         
@@ -146,7 +143,7 @@ class MapViewController: BaseViewController {
             icon = self.resizeImage(image:icon,width: 35,height:35)
             marker.icon = icon
             marker.title = name
-            marker.snippet = "Distance: \(distance)"
+            marker.snippet = .distanceText + "\(distance)"
             marker.map = mapView
 
             mapViewModel.setMapObjects(id:i, name: name, lat: lat, lng: lng, image: image, distance: distance)
@@ -156,7 +153,7 @@ class MapViewController: BaseViewController {
     override func onDataDidLoadErrorWithMessage(errorMessage: String) {
         
         finishedLoading()
-        showAlertPopup(title: .errorTitle, message: .errorSubTitle, yes_text: .ok)
+        showAlertPopup(title: .errorTitle, message: errorMessage, yes_text: .ok)
     }
     
     func finishedLoading(){

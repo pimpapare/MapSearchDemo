@@ -11,10 +11,13 @@ import IGListKit
 
 class SearchListViewController: BaseViewController {
     
+    @IBOutlet weak var txUserSelectedLocation: UILabel!
+    @IBOutlet weak var vHeader: UIView!
+    
     var observer : NSObjectProtocol!
     
+    lazy var mapViewModel:MapViewModel! = MapViewModel(delegate: self)
     lazy var searchViewModel:SearchViewModel = SearchViewModel(delegate: self)
-    
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 0)
     }()
@@ -29,19 +32,20 @@ class SearchListViewController: BaseViewController {
     func addObserve(){
         
         observer = NotificationCenter.default.addObserver(forName: .updateCell, object: nil, queue: OperationQueue.main) { n in
-
+            
+            self.txUserSelectedLocation.text = String(format: "From Latitude: %2f, Longitude: %2f",self.mapViewModel.getUserSelectedLocation().0, self.mapViewModel.getUserSelectedLocation().1)
             self.setCollectionView()
             self.adapter.performUpdates(animated: true, completion: nil)
         }
     }
-        
+    
     override public func refrashCollectionView() {
         adapter.performUpdates(animated: true, completion: nil)
     }
     
     func setCollectionView() {
         
-        collectionView = UICollectionView(frame:CGRect(x:0,y:0,width: Constant.DEVICE_W, height: Constant.DEVICE_H-120), collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView = UICollectionView(frame:CGRect(x:0,y:50,width: Constant.DEVICE_W, height: Constant.DEVICE_H-170), collectionViewLayout: UICollectionViewFlowLayout())
         collectionView?.backgroundColor = UIColor.white
         self.view.addSubview(collectionView!)
         

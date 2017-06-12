@@ -82,7 +82,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="9a6-Rb-ITc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dH2-db-7l3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dH2-db-7l3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -299,8 +299,48 @@
                     <view key="view" contentMode="scaleToFill" id="VGd-yV-ekf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="547"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OYQ-p6-kxV">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ajh-7y-uUt">
+                                        <rect key="frame" x="10" y="10" width="355" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcm-hx-nbd">
+                                        <rect key="frame" x="0.0" y="49" width="375" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="neN-g7-Klz"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="dcm-hx-nbd" firstAttribute="leading" secondItem="OYQ-p6-kxV" secondAttribute="leading" id="BRY-S8-pFo"/>
+                                    <constraint firstItem="Ajh-7y-uUt" firstAttribute="leading" secondItem="OYQ-p6-kxV" secondAttribute="leading" constant="10" id="CUC-Bd-5NB"/>
+                                    <constraint firstAttribute="height" constant="50" id="Cde-vd-di2"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ajh-7y-uUt" secondAttribute="trailing" constant="10" id="Mo7-3q-IKG"/>
+                                    <constraint firstAttribute="trailing" secondItem="dcm-hx-nbd" secondAttribute="trailing" id="YJr-7b-w7n"/>
+                                    <constraint firstItem="Ajh-7y-uUt" firstAttribute="top" secondItem="OYQ-p6-kxV" secondAttribute="top" constant="10" id="hgS-2w-suD"/>
+                                    <constraint firstItem="dcm-hx-nbd" firstAttribute="top" secondItem="Ajh-7y-uUt" secondAttribute="bottom" constant="10" id="pCB-qD-Hdv"/>
+                                    <constraint firstAttribute="bottom" secondItem="dcm-hx-nbd" secondAttribute="bottom" id="riv-sA-N3o"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="OYQ-p6-kxV" secondAttribute="trailing" id="Bwa-ZB-j3y"/>
+                            <constraint firstItem="OYQ-p6-kxV" firstAttribute="leading" secondItem="VGd-yV-ekf" secondAttribute="leading" id="HWH-v3-Oo3"/>
+                            <constraint firstItem="OYQ-p6-kxV" firstAttribute="top" secondItem="hw3-jB-UXZ" secondAttribute="bottom" id="RiQ-5D-MEc"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="txUserSelectedLocation" destination="Ajh-7y-uUt" id="M8P-Fz-w6q"/>
+                        <outlet property="vHeader" destination="OYQ-p6-kxV" id="in6-g6-OjK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r4z-c3-YsX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -17,7 +17,7 @@ public class APIRequest {
     public static func request(withRouter router: MapRouter, withHandler handler: @escaping completionHandler) -> Request?  {
         return Alamofire.request(router).responseJSON(completionHandler: { response in
             
-            debugPrint(response)
+            debugPrint("❤️",response)
             
             let statusCode = response.response?.statusCode
             
@@ -28,28 +28,6 @@ public class APIRequest {
                 handler(nil,APIError.init(status_code: statusCode ?? 0))
             }
         })
-    }
-    
-    public static func requestImage(withRouter router: MapRouter, withHandler handler: @escaping completionHandler) -> Request?  {
-        return Alamofire.request(router).responseImage { response in
-
-            debugPrint(response)
-            debugPrint(response.result)
-            
-            let statusCode = response.response?.statusCode
-
-            switch response.result {
-            case .success( _):
-                
-                if let IMAGE = response.result.value {
-                print("image downloaded: \(IMAGE)")
-                handler(IMAGE, nil)
-                
-                }
-            case .failure( _):
-                handler(nil,APIError.init(status_code: statusCode ?? 0))
-            }
-        }
     }
     
     public static func ResponseHandler(JSON: [String : AnyObject]?, router: MapRouter, completionHandler: APIRequest.completionHandler) {
@@ -74,37 +52,39 @@ public class APIError: LocalizedError {
     
     public var errorDescription: String?
     {
-        switch status_code {
-        case 471:
-            return NSLocalizedString("error_471", comment: "error")
-        case 472:
-            return NSLocalizedString("error_472", comment: "error")
-        case 473:
-            return NSLocalizedString("error_473", comment: "error")
-        case 474:
-            return NSLocalizedString("error_474", comment: "error")
-        case 475:
-            return NSLocalizedString("error_475", comment: "error")
-        case 401:
-            return NSLocalizedString("error_401", comment: "error")
-        case 403:
-            return NSLocalizedString("error_403", comment: "error")
-        case 404:
-            return NSLocalizedString("error_404", comment: "error")
-        case 405:
-            return NSLocalizedString("error_405", comment: "error")
-        case 409:
-            return NSLocalizedString("error_409", comment: "error")
-        case 500:
-            return NSLocalizedString("error_500", comment: "error")
-        case 501:
-            return NSLocalizedString("error_501", comment: "error")
-        case 204:
-            return NSLocalizedString("error_204", comment: "error")
-        default:
-            return NSLocalizedString("error_text", comment: "error")
-        }
-        //        return "\(origin) - code:\(status)(\(status_code)) description:\(descriptionString)"
+        /*  switch status_code {
+         case 471:
+         return NSLocalizedString("error_471", comment: "error")
+         case 472:
+         return NSLocalizedString("error_472", comment: "error")
+         case 473:
+         return NSLocalizedString("error_473", comment: "error")
+         case 474:
+         return NSLocalizedString("error_474", comment: "error")
+         case 475:
+         return NSLocalizedString("error_475", comment: "error")
+         case 401:
+         return NSLocalizedString("error_401", comment: "error")
+         case 403:
+         return NSLocalizedString("error_403", comment: "error")
+         case 404:
+         return NSLocalizedString("error_404", comment: "error")
+         case 405:
+         return NSLocalizedString("error_405", comment: "error")
+         case 409:
+         return NSLocalizedString("error_409", comment: "error")
+         case 500:
+         return NSLocalizedString("error_500", comment: "error")
+         case 501:
+         return NSLocalizedString("error_501", comment: "error")
+         case 204:
+         return NSLocalizedString("error_204", comment: "error")
+         default:
+         return NSLocalizedString("error_text", comment: "error")
+         }
+         //        return "\(origin) - code:\(status)(\(status_code)) description:\(descriptionString)"
+         */
+        return .errorTitle
     }
 }
 

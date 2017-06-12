@@ -26,6 +26,27 @@ class MapViewModel: BaseViewModel {
         return result
     }
     
+    func getZoomLocation(userLocation:Bool) -> [Double] {
+        
+        var location:[Double] = [.defaultLat,.defaultLng]
+        
+        if userLocation == true {
+            location = [self.getUserLocation().0,self.getUserLocation().1]
+        }else{
+            location = [self.getUserSelectedLocation().0,self.getUserSelectedLocation().1]
+        }
+        return location
+    }
+    
+    func validateCenterMarker(lat:Double,lng:Double) -> [Double]{
+    
+        if lat <= 0 || lng <= 0 {
+            return [.defaultLat,.defaultLng]
+        }else{
+            return [lat ,lng]
+        }
+    }
+    
     func distanceValueText(sliderValue:Float) -> String {
         
         let result = Int(sliderValue * 50)
@@ -61,11 +82,21 @@ class MapViewModel: BaseViewModel {
             
             if let response = response as? MapModel {
                 
-                self?.dicPlaces = response.dic
-                
-                self?.map.append(response)
-                self?.delegate?.onDataDidLoad()
-                
+                if let errorMessage = response.dic?["error_message"] {
+                    self?.delegate?.onDataDidLoadErrorWithMessage(errorMessage: errorMessage as! String)
+                }else{
+                    
+                    let txStatus = response.dic?["status"] as! String
+                    
+                    if txStatus != "OK"{
+                        self?.delegate?.onDataDidLoadErrorWithMessage(errorMessage: txStatus)
+                    }else{
+                        self?.dicPlaces = response.dic
+                        
+                        self?.map.append(response)
+                        self?.delegate?.onDataDidLoad()
+                    }
+                }
             } else {
                 self?.delegate?.onDataDidLoadErrorWithMessage(errorMessage: (error?.localizedDescription)!)
             }
@@ -112,7 +143,7 @@ class MapViewModel: BaseViewModel {
     }
     
     func getCalculateDistance(lat :Double,lng :Double) -> String{
-
+        
         let latStart = self.getUserSelectedLocation().0
         let lngStart = self.getUserSelectedLocation().1
         
@@ -131,9 +162,9 @@ class MapViewModel: BaseViewModel {
     }
     
     func deg2rad(num:Double) -> Double {
-       return num * .pi / 180
+        return num * .pi / 180
     }
-  
+    
     func getPlaceCount() -> Int{
         let result:Int = (getMarker()?.count ?? 1) - 1
         guard result > 0 else {
