@@ -159,7 +159,8 @@ class MapViewController: BaseViewController,GMSMapViewDelegate {
             marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lng)
             
             var icon:UIImage = UIImage(named: mapViewModel.getArrayMarker())!.withRenderingMode(.alwaysOriginal)
-            icon = self.resizeImage(image:icon,width: 35,height:35)
+            icon = self.resizeImage(image:icon,width: 30, height: 30)
+            
             marker.icon = icon
             marker.title = name
             marker.snippet = .distanceText + " \(distance)"
