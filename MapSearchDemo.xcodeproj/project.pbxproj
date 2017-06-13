@@ -240,12 +240,12 @@
 				1A60D5C21EE86FE90014049C /* LaunchScreenViewController.swift */,
 				1A60D5C91EE86FE90014049C /* LaunchScreen.storyboard */,
 				1A60D5C41EE86FE90014049C /* Main.storyboard */,
+				1A60D5CC1EE86FE90014049C /* Info.plist */,
 				1A60D5C71EE86FE90014049C /* Assets.xcassets */,
 				1AC2BE3C1EEBC8900028FF87 /* APIRequest */,
 				1A60D60B1EE876FE0014049C /* Helper */,
 				1A60D6091EE876E70014049C /* View */,
 				1A60D60A1EE876F20014049C /* Menu */,
-				1A60D5CC1EE86FE90014049C /* Info.plist */,
 			);
 			path = MapSearchDemo;
 			sourceTree = "<group>";

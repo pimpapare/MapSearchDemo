@@ -30,7 +30,7 @@ class MapViewModel: BaseViewModel {
         
         var location:[Double] = [.defaultLat,.defaultLng]
         
-        if userLocation == true {
+        if userLocation {
             location = [self.getUserLocation().0,self.getUserLocation().1]
         }else{
             location = [self.getUserSelectedLocation().0,self.getUserSelectedLocation().1]

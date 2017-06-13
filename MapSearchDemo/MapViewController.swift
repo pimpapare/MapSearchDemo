@@ -22,7 +22,8 @@ class MapViewController: BaseViewController,GMSMapViewDelegate {
     @IBOutlet weak var vCircle: UIViewExtension!
     @IBOutlet weak var txDistance: UILabel!
     @IBOutlet weak var txLocation: UILabel!
-
+    
+    @IBOutlet weak var vCurrentLocation: UIViewExtension!
     @IBOutlet weak var btnSearch: UIButtonExtension!
     @IBOutlet weak var bottomViewSlider: NSLayoutConstraint!
     @IBOutlet weak var heightVCircle: NSLayoutConstraint!
@@ -55,12 +56,25 @@ class MapViewController: BaseViewController,GMSMapViewDelegate {
         vTitleSlider.backgroundColor = UIColor.colorStrikemaster
         vTitleSlider.backgroundColor = UIColor.colorCharcoal
         
+        vCurrentLocation.startColor = UIColor.clear
+        vCurrentLocation.endColor = UIColor.clear
         btnSearch.backgroundColor = UIColor.colorRed
     }
     
     func addGoogleMapView(zoom:Float,userLocation:Bool){
         
-        let camera = GMSCameraPosition.camera(withLatitude:mapViewModel.getZoomLocation(userLocation: userLocation)[0], longitude:mapViewModel.getZoomLocation(userLocation: userLocation)[1], zoom: zoom)
+        zoomMap = zoom
+        var camera = GMSCameraPosition()
+        var lat = centerMarkerLocation().0
+        var lng = centerMarkerLocation().1
+        
+        if userLocation{
+            lat = mapViewModel.getZoomLocation(userLocation: userLocation)[0]
+            lng = mapViewModel.getZoomLocation(userLocation: userLocation)[1]
+        }
+
+        camera = GMSCameraPosition.camera(withLatitude:lat, longitude:lng, zoom: zoom)
+
         mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: Constant.DEVICE_W, height: Constant.DEVICE_H-110), camera:camera)
         
         self.view.addSubview(mapView)
@@ -71,6 +85,12 @@ class MapViewController: BaseViewController,GMSMapViewDelegate {
     
     @IBAction func btnSearchPressed(_ sender: Any) {
         callServiceMapPlace()
+    }
+    
+    @IBAction func btnCurrentLocationPressed(_ sender: Any) {
+        
+        mapView?.clear()
+        addGoogleMapView(zoom: 16,userLocation: true)
     }
     
     func callServiceMapPlace(){
@@ -94,10 +114,9 @@ class MapViewController: BaseViewController,GMSMapViewDelegate {
     func centerMarkerLocation() -> (Double,Double) {
         
         let point:CGPoint = vPin.center
-        let coor:CLLocationCoordinate2D = (mapView?.projection.coordinate(for: point))!
+        let coor:CLLocationCoordinate2D = (mapView?.projection.coordinate(for: point)) ?? CLLocationCoordinate2DMake(.defaultLat , .defaultLng)
         
         let location = mapViewModel.validateCenterMarker(lat: coor.latitude, lng: coor.longitude)
-
         return (location[0],location[1])
     }
     
@@ -145,7 +164,7 @@ class MapViewController: BaseViewController,GMSMapViewDelegate {
             marker.title = name
             marker.snippet = .distanceText + " \(distance)"
             marker.map = mapView
-
+            
             mapViewModel.setMapObjects(id:i, name: name, lat: lat, lng: lng, image: image, distance: distance)
         }
     }
