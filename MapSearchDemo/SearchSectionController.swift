@@ -6,7 +6,6 @@
 //  Copyright © 2017 Pimpaporn Chaichompoo. All rights reserved.
 //
 
-
 import UIKit
 import IGListKit
 

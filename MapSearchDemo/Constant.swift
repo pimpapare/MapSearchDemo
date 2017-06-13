@@ -12,7 +12,6 @@ class Constant {
     
     static let DEVICE_W = UIScreen.main.bounds.width
     static let DEVICE_H = UIScreen.main.bounds.height
-    
 }
 
 public extension NSNotification.Name {

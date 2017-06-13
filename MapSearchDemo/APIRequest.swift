@@ -50,8 +50,7 @@ public class APIError: LocalizedError {
         self.status_code = status_code
     }
     
-    public var errorDescription: String?
-    {
+    public var errorDescription: String?{
         /*  switch status_code {
          case 471:
          return NSLocalizedString("error_471", comment: "error")

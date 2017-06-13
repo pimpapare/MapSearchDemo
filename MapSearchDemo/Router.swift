@@ -35,12 +35,14 @@ extension Router {
             return .get
         }
     }
+    
     public var path: String {
         switch self {
         case .getPlaceList:
             return "place/nearbysearch/json"
         }
     }
+    
     public var parameters: [String: AnyObject]? {
         switch self {
         case .getPlaceList(let location,let radius,let key):
@@ -50,24 +52,28 @@ extension Router {
             return params as [String : AnyObject]
         }
     }
+    
     public var headers: [String: String]? {
         switch self {
         case .getPlaceList:
             return nil
         }
     }
+    
     public var rawBody: NSData {
         switch self {
         default:
             return NSData()
         }
     }
+    
     public var responseClass: BaseModel.Type {
         switch self {
         case .getPlaceList:
             return MapModel.self
         }
     }
+    
     public func asURLRequest() throws -> URLRequest {
         var urlRequest = URLRequest(url: URL(string: url + path)!)
         urlRequest.httpMethod = method.rawValue
@@ -80,8 +86,8 @@ extension Router {
 }
 
 enum asd: URLRequestConvertible {
+    
     func asURLRequest() throws -> URLRequest {
-        
         return urlRequest!
     }
 }

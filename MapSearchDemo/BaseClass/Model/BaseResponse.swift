@@ -10,8 +10,10 @@ import Foundation
 
 
 public class BaseModel: NSObject {
+    
     var status: String?
     var message: String?
+    
     public required init(withDictionary dict: [String:AnyObject]) {
         self.status = dict["status"] as? String
         self.message = dict["message"] as? String
